@@ -1,0 +1,32 @@
+.header {
+    background-color: map-deep-get($colors, black, primary);
+    width: 100%;
+}
+
+.header__box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: $gridGap*1.5;
+}
+
+.header__logo {
+    fill: map-deep-get($colors, white, darken-2);
+    height: 31px;
+    width: 37px;
+}
+
+.header__title {
+    fill: map-deep-get($colors, white, primary);
+    height: 21px;
+    width: 255px;
+}
+
+.header__link {
+    @include text('trade-gothic', 14, 700, map-deep-get($colors, black, lighten-4));
+    line-height: 1;
+    margin: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+}

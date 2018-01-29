@@ -1,0 +1,36 @@
+extends templates/_default
+
+block includes
+    include layouts/includes/_mixins
+
+//- Page Head Variables
+block vars
+    -var title = '';
+    -var description = '';
+
+block content
+    .svg__spritesheet
+        include ./layouts/includes/inline.svg
+
+    header.header
+        .header__box
+            +inline-svg('braventures-logo', 'header__logo')
+            +inline-svg('braventures-title', 'header__title')
+            a.header__link(href="https://braveux.com" target="_blank") Visit Brave UX
+
+    .content
+        p.content__title Products and projects made for ourselves and the UX community.
+        .ventures
+            .venture
+                .venture__box.venture__box--logo
+                    +svg('ffux-logo', 'venture__logo')
+                .venture__box.venture__box--copy
+                    .venture__copy
+                        h5.venture__type Principled Posters
+                        h2.venture__title Fight For UX
+                        p.venture__text Poster series to inspire UX work of the highest standard.
+                .venture__box.venture__box--image
+                .venture__box.venture__box--arrow
+
+    //- Footer
+    include layouts/general/_footer

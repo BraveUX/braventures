@@ -1,0 +1,70 @@
+// Media Query Breakpoint Map (Modify as needed)
+$breakpoints: (
+    xs: 320px,
+    sm: 650px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1440px
+);
+
+// NORMALIZE
+@import 'normalize-scss/sass/normalize'; // loaded from node_modules
+
+// VENDORS
+@import 'animate-scss/animate.scss'; // loaded from node_modules
+@import 'super-gigi/dist/main'; // loaded from node_modules
+@import 'vendors/link-underline';
+
+// HELPERS
+@import 'helpers/variables';
+@import 'helpers/colors';
+@import 'helpers/text';
+@import 'helpers/utilities';
+
+// PARTIALS
+@import 'partials/content';
+@import 'partials/header';
+@import 'partials/ventures';
+
+// BOX-SIZING - FONT-SIZING PRESETS
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // Scales 1 rem unit to 10px
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: map-deep-get($colors, black, lighten-1);
+    font-size: 1.6rem; // = 16px default font size
+    margin: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+    width: 100%;
+}
+
+// Text Highlight Color
+::selection {
+    background: map-deep-get($colors, white, darken-4);
+}
+
+// Accessibility focus outline
+button,
+a {
+    &:focus {
+        outline: 1px dotted rgba(map-deep-get($colors, white, darken-3), 0.7); // outline-offset: 2px;
+    }
+
+    &::-moz-focus-inner {
+        border: 0; // color: $green;
+    }
+}
+
+// Hide inline spritesheet
+.svg__spritesheet {
+    display: none;
+}

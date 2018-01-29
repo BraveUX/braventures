@@ -1,0 +1,10 @@
+.content {
+    @include wrapper;
+    padding: 7.5vh 5vw;
+}
+
+.content__title {
+    @include text('sentinel', 32, 300, map-deep-get($colors, white, primary));
+    margin: 0 0 7.5vh;
+    text-align: center;
+}
