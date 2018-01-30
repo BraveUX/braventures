@@ -11,7 +11,20 @@ requireDir('./gulp/tasks', {
 });
 
 // The main building block task
-gulp.task('build', gulp.series('clean', 'svg', 'pug', 'favicons', 'fonts', 'scss', 'scripts', 'imagemin', 'assets'));
+gulp.task(
+    'build',
+    gulp.series(
+        'clean',
+        'svg',
+        'pug',
+        'favicons',
+        'fonts',
+        'scss',
+        'scripts',
+        'imagemin',
+        'assets'
+    )
+);
 
 // Function to properly reload your browser
 function reload(done) {
@@ -42,6 +55,7 @@ gulp.task('watch', done => {
     gulp.watch('src/scripts/**/*', gulp.series('scripts', reload));
     gulp.watch('src/favicons/**/*', gulp.series('favicons', reload));
     gulp.watch('src/assets/**/*', gulp.series('assets', reload));
+    gulp.watch('src/assets/images/**/*', gulp.series('imagemin', reload));
     gulp.watch('src/fonts/**/*', gulp.series('fonts', reload));
     gulp.watch('src/views/**/*', gulp.series('pug', reload));
     done();

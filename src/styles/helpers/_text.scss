@@ -20,6 +20,7 @@
 @mixin font-family($family) {
     @if ($family == 'trade-gothic') {
         font-family: 'Trade Gothic LT Std', sans-serif;
+        letter-spacing: 2px;
     }
 
     @else if ($family == 'source-sans-pro') {

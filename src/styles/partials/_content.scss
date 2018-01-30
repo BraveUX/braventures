@@ -1,10 +1,17 @@
 .content {
+    min-height: calc(100vh - #{$header-height});
+}
+
+.content__wrapper {
     @include wrapper;
-    padding: 7.5vh 5vw;
+
+    padding: $gridGap*6 5vw $gridGap*8;
 }
 
 .content__title {
     @include text('sentinel', 32, 300, map-deep-get($colors, white, primary));
-    margin: 0 0 7.5vh;
+    @include text('sentinel', 32, 300, map-deep-get($colors, white, primary));
+
+    margin: 0 0 $gridGap*6;
     text-align: center;
 }

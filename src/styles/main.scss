@@ -23,6 +23,7 @@ $breakpoints: (
 
 // PARTIALS
 @import 'partials/content';
+@import 'partials/footer';
 @import 'partials/header';
 @import 'partials/ventures';
 
@@ -55,12 +56,12 @@ body {
 // Accessibility focus outline
 button,
 a {
-    &:focus {
-        outline: 1px dotted rgba(map-deep-get($colors, white, darken-3), 0.7); // outline-offset: 2px;
-    }
-
     &::-moz-focus-inner {
         border: 0; // color: $green;
+    }
+
+    &:focus {
+        outline: 1px dotted rgba(map-deep-get($colors, white, darken-3), 0.7); // outline-offset: 2px;
     }
 }
 

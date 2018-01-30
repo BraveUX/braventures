@@ -50,19 +50,18 @@
         "gulp-uncss": "*",
         "gulp-util": "^3.0.8",
         "node-sass": "^4.5.3",
-        "prettier-stylelint": "^0.4.2",
         "require-dir": "*",
-        "stylelint": "^8.2.0",
-        "stylelint-order": "^0.4.4",
-        "stylelint-scss": "^1.4.4",
-        "stylelint-suitcss": "^1.0.0",
+        "stylelint": "*",
+        "stylelint-config-prettier": "*",
+        "stylelint-config-standard": "*",
+        "stylelint-order": "*",
+        "stylelint-scss": "*",
+        "stylelint-suitcss": "*",
         "super-gigi": "^1.17.0",
         "yargs": "^8.0.1"
     },
     "dependencies": {
-        "clipboard": "^1.7.1",
-        "jquery": "^3.2.1",
-        "normalize-scss": "^5.0.3",
+        "normalize-scss": "*",
         "svg4everybody": "^2.1.9"
     }
 }

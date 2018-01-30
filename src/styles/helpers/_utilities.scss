@@ -26,7 +26,11 @@
 @function svg-url($svg) {
     //  Add missing namespace
     @if not str-index($svg,xmlns) {
-        $svg: str-replace($svg, '<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+        $svg: str-replace(
+            $svg,
+            '<svg',
+            '<svg xmlns="http://www.w3.org/2000/svg"'
+        );
     }
 
     //  Chunk up string in order to avoid
@@ -88,4 +92,11 @@
     }
 
     @return $map;
+}
+
+// Calculate spacing between a row of items based on number of items
+@mixin calcSpacing($items) {
+    $width: 100/$items;
+
+    max-width: calc(#{$width}% - #{$gridGap/2});
 }
