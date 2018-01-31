@@ -4,10 +4,10 @@
 // leading edge, instead of the trailing.
 function debounce(func, wait, immediate) {
     let timeout;
-    return function () {
+    return function() {
         const context = this;
         const args = arguments;
-        const later = function () {
+        const later = function() {
             timeout = null;
             if (!immediate) func.apply(context, args);
         };
@@ -44,5 +44,13 @@ function checkMediaQuery(size) {
             breakpoint = size;
     }
 
-    return window.matchMedia( `(min-width: ${breakpoint}px)` ).matches;
+    return window.matchMedia(`(min-width: ${breakpoint}px)`).matches;
+}
+
+// loop
+function loop(elements, callback) {
+    const l = elements.length;
+    for (let i = 0; i < l; i++) {
+        callback(elements[i]);
+    }
 }

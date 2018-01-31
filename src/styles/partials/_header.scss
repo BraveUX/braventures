@@ -3,19 +3,29 @@
     width: 100%;
 }
 
+.header__wrapper {
+    @include wrapper;
+    max-width: calc(#{$wrapper-width} + #{$gridGap*8});
+}
+
 .header__box {
     align-items: center;
     display: flex;
     height: $header-height;
     justify-content: space-between;
-    padding: $gridGap*1.5;
+    padding: $gridGap*1.5 5vw;
     width: 100%;
 }
 
 .header__logo {
-    fill: map-deep-get($colors, white, darken-2);
-    height: 31px;
-    width: 37px;
+    display: none;
+
+    @include media-query('sm') {
+        display: block;
+        fill: map-deep-get($colors, white, darken-2);
+        height: 31px;
+        width: 37px;
+    }
 }
 
 .header__title {
@@ -25,9 +35,15 @@
 }
 
 .header__link {
-    @include text('trade-gothic', 14, 700, map-deep-get($colors, black, lighten-3));
-    line-height: 1;
-    margin: 0;
-    text-decoration: none;
-    text-transform: uppercase;
+    margin-left: $gridGap;
+
+    &::after {
+        content: none;
+    }
+
+    @include media-query('sm') {
+        &::after {
+            content: ' ';
+        }
+    }
 }

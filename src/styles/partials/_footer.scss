@@ -4,7 +4,7 @@
 
 .footer__wrapper {
     @include wrapper;
-    max-width: calc($wrapper-width + $gridGap*4);
+    max-width: calc(#{$wrapper-width} + #{$gridGap*8});
     padding: $gridGap*8 5vw;
 }
 

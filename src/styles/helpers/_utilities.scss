@@ -85,6 +85,11 @@
     @return if($index, str-slice($string, 1, $index - 1)+$replace+str-replace(str-slice($string, $index + str-length($search)), $search, $replace), $string);
 }
 
+//  Background svg mixin
+@mixin background-svg($svg) {
+    background-image: svg-url($svg);
+}
+
 // Helper function to fetch deeply nested values from a map
 @function map-deep-get($map, $keys...) {
     @each $key in $keys {
@@ -97,6 +102,5 @@
 // Calculate spacing between a row of items based on number of items
 @mixin calcSpacing($items) {
     $width: 100/$items;
-
     max-width: calc(#{$width}% - #{$gridGap/2});
 }

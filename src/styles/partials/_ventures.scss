@@ -1,25 +1,55 @@
 .ventures {
     display: flex;
     flex-direction: column;
+
+    @include media-query('md') {
+        flex-flow: row wrap;
+    }
+
+    @include media-query('lg') {
+        flex-direction: column;
+    }
 }
 
 .venture {
     background-color: map-deep-get($colors, black, primary);
-    box-shadow: 0 0 0 3px map-deep-get($colors, black, lighten-1),
-        0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.19);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.19);
     display: flex;
     flex-flow: row wrap;
     min-height: 260px;
+    position: relative;
     text-decoration: none;
     transition: box-shadow 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &:hover {
-        box-shadow: 0 0 0 3px map-deep-get($colors, white, primary),
-            0 17px 28px rgba(0, 0, 0, 0.25), 0 13px 10px rgba(0, 0, 0, 0.17);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+            0 10px 10px rgba(0, 0, 0, 0.17);
     }
 
     + .venture {
         margin-top: $gridGap*4;
+    }
+
+    @include media-query('md', only) {
+        max-width: calc(50% - #{$gridGap});
+
+        + .venture {
+            margin-left: $gridGap*2;
+            margin-top: $gridGap*2;
+
+            &:nth-of-type(2) {
+                margin-top: 0;
+            }
+
+            &:nth-of-type(2n + 1) {
+                margin-left: 0;
+            }
+        }
+    }
+
+    @include media-query('lg') {
+        flex-flow: row wrap;
+        max-width: none;
     }
 }
 
@@ -27,53 +57,111 @@
     align-items: center;
     display: flex;
     padding: $gridGap*2;
-    transition: box-shadow 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
     width: 100%;
 
-    + .venture__box {
-        box-shadow: -3px 0 0 0 map-deep-get($colors, black, lighten-1);
-
-        .venture:hover & {
-            box-shadow: -3px 0 0 0 map-deep-get($colors, white, primary);
+    @include media-query('lg') {
+        + .venture__box {
+            box-shadow: -3px 0 0 0 map-deep-get($colors, black, lighten-1);
         }
     }
 }
 
 .venture__box--logo {
-    justify-content: center;
-    max-width: calc(100px + #{$gridGap*4});
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+
+    @include media-query('lg') {
+        justify-content: center;
+        max-width: calc(100px + #{$gridGap*4});
+        padding-right: $gridGap*2;
+        position: relative;
+        width: 100%;
+    }
+}
+
+.venture__box--copy {
+    max-width: calc(100% - (48px + #{$gridGap*2}));
 }
 
 .venture__box--copy,
 .venture__box--preview {
-    // calc sides and split in half
-    max-width: calc(50% - ((100px + 25px) + #{$gridGap*5}) / 2);
+    @include media-query('lg') {
+        // calc sides and split in half
+        max-width: calc(50% - ((100px + 25px) + #{$gridGap*5}) / 2);
+    }
 }
 
 .venture__box--preview {
+    border-top: 3px solid map-deep-get($colors, black, lighten-2);
     display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
+    padding: $gridGap*2;
+    transition: border 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
     .ftb & {
         align-items: center;
         flex-flow: row wrap;
         justify-content: center;
     }
+
+    @include media-query('md') {
+        margin-top: auto;
+    }
+
+    @include media-query('lg') {
+        border: none;
+        margin: 0;
+    }
+}
+
+.venture__cta {
+    background-color: transparent;
+    border-top: 3px solid map-deep-get($colors, black, lighten-2);
+    display: block;
+    flex-shrink: 0;
+    margin: $gridGap*2 #{-$gridGap*2} #{-$gridGap*2};
+    padding: $gridGap*2 $gridGap*2;
+    text-align: center;
+    width: calc(100% + #{$gridGap*4});
+
+    &:hover {
+        .btn--text {
+            @extend .btn--text:hover;
+        }
+    }
+
+    @include media-query('lg') {
+        display: none;
+    }
 }
 
 .venture__box--arrow {
-    display: flex;
-    justify-content: center;
-    max-width: calc(25px + #{$gridGap});
-    padding: $gridGap*2 $gridGap/2;
+    display: none;
+
+    @include media-query('lg') {
+        display: flex;
+        justify-content: center;
+        max-width: calc(25px + #{$gridGap});
+        padding: $gridGap*2 $gridGap/2;
+    }
 }
 
 .venture__logo {
-    align-self: center;
-    height: 100%;
-    max-height: 80px;
-    max-width: 100px;
+    margin-left: auto;
+    max-height: 36px;
+    max-width: 48px;
     object-fit: contain;
+    width: 100%;
+
+    @include media-query('lg') {
+        align-self: center;
+        margin: 0;
+        max-height: 80px;
+        max-width: 100px;
+    }
 }
 
 .venture__copy {
@@ -83,13 +171,22 @@
 
 .venture__type {
     @include text('trade-gothic', 12, 700, map-deep-get($colors, white, darken-1));
-    margin: 0 0 $gridGap;
+    margin: 0 0 $gridGap/2;
     text-transform: uppercase;
+
+    @include media-query('lg') {
+        margin: 0 0 $gridGap;
+    }
 }
 
 .venture__title {
     @include text('source-sans-pro', 36, 300, map-deep-get($colors, white, darken-1));
-    margin: 0 0 $gridGap*1.5;
+    line-height: 1.2;
+    margin: 0 0 $gridGap*0.75;
+
+    @include media-query('lg') {
+        margin: 0 0 $gridGap*1.5;
+    }
 }
 
 .venture__text {

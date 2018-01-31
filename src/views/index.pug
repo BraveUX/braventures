@@ -12,11 +12,7 @@ block content
     .svg__spritesheet
         include ./layouts/includes/inline.svg
 
-    header.header
-        .header__box
-            +inline-svg('braventures-logo', 'header__logo')
-            +inline-svg('braventures-title', 'header__title')
-            a.header__link(href="https://braveux.com" target="_blank") Visit Brave UX
+    include layouts/general/_header
 
     .content
         .content__wrapper
@@ -26,3 +22,6 @@ block content
 
     //- Footer
     include layouts/general/_footer
+
+block scripts
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js')
