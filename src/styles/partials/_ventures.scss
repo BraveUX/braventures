@@ -211,6 +211,17 @@
         margin: $gridGap/4;
         max-height: 27px;
         width: auto;
+
+        // trim the last 6 badges on smaller displays
+        &:nth-last-child(-n + 6) {
+            display: none;
+        }
+
+        @include media-query('lg') {
+            &:nth-last-child(-n + 6) {
+                display: block;
+            }
+        }
     }
 }
 

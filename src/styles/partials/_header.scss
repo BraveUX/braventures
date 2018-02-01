@@ -12,9 +12,13 @@
     align-items: center;
     display: flex;
     height: $header-height;
-    justify-content: space-between;
+    justify-content: center;
     padding: $gridGap*1.5 5vw;
     width: 100%;
+
+    @include media-query('sm') {
+        justify-content: space-between;
+    }
 }
 
 .header__logo {
@@ -35,13 +39,12 @@
 }
 
 .header__link {
-    margin-left: $gridGap;
-
-    &::after {
-        content: none;
-    }
+    display: none;
 
     @include media-query('sm') {
+        display: flex;
+        margin-left: $gridGap;
+
         &::after {
             content: ' ';
         }
