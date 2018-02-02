@@ -4,14 +4,25 @@
 
 .content__wrapper {
     @include wrapper;
+    padding: $gridGap*3 5vw $gridGap*4;
 
-    padding: $gridGap*6 5vw $gridGap*8;
+    @include media-query('md') {
+        padding: $gridGap*6 5vw $gridGap*8;
+    }
 }
 
 .content__title {
     @include text('sentinel', 32, 300, map-deep-get($colors, white, primary));
     @include text('sentinel', 32, 300, map-deep-get($colors, white, primary));
-
-    margin: 0 0 $gridGap*6;
+    margin: 0 auto $gridGap*3;
+    max-width: 450px;
     text-align: center;
+
+    @include media-query('md') {
+        margin: 0 auto $gridGap*6;
+    }
+
+    @include media-query('lg') {
+        max-width: none;
+    }
 }

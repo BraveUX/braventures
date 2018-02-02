@@ -102,5 +102,6 @@
 // Calculate spacing between a row of items based on number of items
 @mixin calcSpacing($items) {
     $width: 100/$items;
+    flex: 1 0 calc(#{$width}% - #{$gridGap/2});
     max-width: calc(#{$width}% - #{$gridGap/2});
 }
