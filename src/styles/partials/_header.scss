@@ -1,6 +1,15 @@
 .header {
+    @include position(fixed, 0);
     background-color: map-deep-get($colors, black, primary);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-110%);
+    transition: transform 300ms ease-in-out;
     width: 100%;
+    z-index: 100;
+
+    &.is-visible {
+        transform: translateY(0);
+    }
 }
 
 .header__wrapper {
