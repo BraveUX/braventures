@@ -114,46 +114,149 @@
     });
 
     // Hover states
-    /* loop(document.querySelectorAll('.venture'), elem => {
+    loop(document.querySelectorAll('.venture'), elem => {
         const tl = new TimelineMax({
             paused: true
         });
 
-        // FFUX Hover
-        if (elem.classList.contains('ffux')) {
-            tl
-                .fromTo(
-                    elem.querySelectorAll('.venture__preview')[1],
-                    0.5, {
-                        boxShadow: '0 0 0.1px rgba(0,0,0,0.25), 0 0 0.1px rgba(0,0,0,0.22)'
-                    }, {
-                        scale: 1.15,
-                        zIndex: 1,
-                        boxShadow: '0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)',
-                        ease: Back.easeOut.config(1.7)
-                    },
-                    0
-                )
-                .to(
-                    elem.querySelectorAll('.venture__preview')[0],
-                    0.5, {
-                        x: '50%',
-                        rotation: -25,
-                        scale: 0.9,
-                        ease: Back.easeOut.config(1.7)
-                    },
-                    0.05
-                )
-                .to(
-                    elem.querySelectorAll('.venture__preview')[2],
-                    0.5, {
-                        x: '-50%',
-                        rotation: 25,
-                        scale: 0.9,
-                        ease: Back.easeOut.config(1.7)
-                    },
-                    0.05
-                );
+        // HOVER Fight For UX
+        switch (true) {
+            case elem.classList.contains('ffux'):
+                tl
+                    .fromTo(
+                        elem.querySelectorAll('.venture__preview')[1],
+                        0.5,
+                        {
+                            boxShadow:
+                                '0 0 0.1px rgba(0,0,0,0.25), 0 0 0.1px rgba(0,0,0,0.22)'
+                        },
+                        {
+                            scale: 1.1,
+                            zIndex: 1,
+                            boxShadow:
+                                '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
+                            ease: Back.easeOut.config(2)
+                        },
+                        0
+                    )
+                    .to(
+                        elem.querySelectorAll('.venture__preview')[0],
+                        0.5,
+                        {
+                            x: '50%',
+                            rotation: -25,
+                            scale: 0.9,
+                            ease: Back.easeOut.config(1.5)
+                        },
+                        0.05
+                    )
+                    .to(
+                        elem.querySelectorAll('.venture__preview')[2],
+                        0.5,
+                        {
+                            x: '-50%',
+                            rotation: 25,
+                            scale: 0.9,
+                            ease: Back.easeOut.config(1.5)
+                        },
+                        0.05
+                    );
+                break;
+
+            // HOVER Stock Against Photography
+            case elem.classList.contains('sap'):
+                tl
+                    .set(elem.querySelectorAll('.venture__preview')[0], {
+                        css: {
+                            boxShadow:
+                                '0 0 0.1px rgba(0,0,0,0.25), 0 0 0.1px rgba(0,0,0,0.22)'
+                        }
+                    })
+                    .to(
+                        elem.querySelectorAll('.venture__preview')[0],
+                        0.3,
+                        {
+                            scale: 1.2,
+                            zIndex: 1,
+                            boxShadow:
+                                '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
+                            ease: Back.easeOut.config(2)
+                        },
+                        0
+                    )
+                    .add('shift')
+                    .to(
+                        elem.querySelectorAll('.venture__preview')[0],
+                        0.5,
+                        {
+                            xPercent: 300,
+                            x: 35,
+                            ease: Back.easeOut.config(1.1)
+                        },
+                        'shift'
+                    )
+                    .staggerTo(
+                        [
+                            elem.querySelectorAll('.venture__preview')[1],
+                            elem.querySelectorAll('.venture__preview')[2],
+                            elem.querySelectorAll('.venture__preview')[3]
+                        ],
+                        0.5,
+                        {
+                            xPercent: -100,
+                            x: -10,
+                            ease: Back.easeOut.config(1.5)
+                        },
+                        0.1,
+                        'shift'
+                    )
+                    .to(elem.querySelectorAll('.venture__preview')[0], 0.3, {
+                        scale: 1,
+                        boxShadow:
+                            '0 0 0.1px rgba(0,0,0,0.25), 0 0 0.1px rgba(0,0,0,0.22)',
+                        ease: Back.easeOut.config(2)
+                    });
+                break;
+            case elem.classList.contains('bravery'):
+                tl
+                    .to(
+                        elem.querySelectorAll('.venture__preview')[0],
+
+                        0.5,
+                        {
+                            y: '15%',
+                            ease: Back.easeOut.config(1.2)
+                        }
+                    )
+                    .to(
+                        elem.querySelectorAll('.venture__preview')[2],
+                        0.5,
+                        {
+                            y: '-15%',
+                            ease: Back.easeOut.config(1.2)
+                        },
+                        0
+                    )
+                    .staggerTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        0.5,
+                        {
+                            rotationY: 45,
+                            ease: Back.easeOut.config(1.5)
+                        },
+                        0.05,
+                        0
+                    )
+                    .staggerTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        0.5,
+                        {
+                            scale: 1.4
+                        },
+                        0.05,
+                        0
+                    );
+                break;
         }
 
         // Mouse In
@@ -167,7 +270,7 @@
             console.log('exit');
             tl.reverse();
         });
-    }); */
+    });
 })();
 
 (function scrollTop() {
