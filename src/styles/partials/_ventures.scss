@@ -18,14 +18,17 @@
     display: flex;
     flex-flow: row wrap;
     min-height: 260px;
-    opacity: 0;
+    // opacity: 0;
+    opacity: 1;
     position: relative;
     text-decoration: none;
-    transition: box-shadow 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: box-shadow 350ms cubic-bezier(0.25, 0.8, 0.25, 1),
+        background-color 350ms;
+    width: 100%;
 
     &:hover {
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2),
-            0 10px 10px rgba(0, 0, 0, 0.17);
+        background-color: #222224;
+        box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.5);
     }
 
     + .venture {
@@ -57,7 +60,7 @@
 
 .venture__box {
     align-items: center;
-    display: flex;
+    display: inline-flex;
     padding: $gridGap*2;
     width: 100%;
 
@@ -107,6 +110,7 @@
         align-items: center;
         flex-flow: row wrap;
         justify-content: center;
+        overflow: hidden;
     }
 
     @include media-query('md') {
@@ -176,6 +180,11 @@
     @include text('trade-gothic', 12, 700, map-deep-get($colors, white, darken-1));
     margin: 0 0 $gridGap/2;
     text-transform: uppercase;
+    transition: color 350ms;
+
+    .venture:hover & {
+        color: #fff;
+    }
 
     @include media-query('lg') {
         margin: 0 0 $gridGap;
@@ -186,6 +195,11 @@
     @include text('source-sans-pro', 36, 300, map-deep-get($colors, white, darken-1));
     line-height: 1.2;
     margin: 0 0 $gridGap*0.75;
+    transition: color 350ms;
+
+    .venture:hover & {
+        color: #fff;
+    }
 
     @include media-query('lg') {
         margin: 0 0 $gridGap*1.5;
@@ -195,6 +209,11 @@
 .venture__text {
     @include text('sentinel', 16, 300, map-deep-get($colors, white, darken-2));
     margin: auto 0 0;
+    transition: color 350ms;
+
+    .venture:hover & {
+        color: #fff;
+    }
 }
 
 .venture__preview {
@@ -204,13 +223,52 @@
 
     .ffux & {
         @include calcSpacing(3);
+
+        &:nth-of-type(1) {
+            transform: translateX(50%) rotate(-25deg) scale(0.9);
+        }
+
+        &:nth-of-type(2) {
+            box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.8);
+            transform: scale(1.125);
+            z-index: 1;
+        }
+
+        &:nth-of-type(3) {
+            transform: translateX(-50%) rotate(25deg) scale(0.9);
+        }
     }
 
     .sap & {
         @include calcSpacing(4);
+        // transform-origin: bottom center;
+        transform-style: preserve-3d;
+
+        &:nth-of-type(1) {
+            z-index: 10;
+        }
+
+        &:nth-of-type(2),
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+            box-shadow: 7px 7px 30px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        &:nth-of-type(2) {
+            transform: translateY(-5px);
+        }
+
+        &:nth-of-type(3) {
+            transform: translateY(30px);
+        }
+
+        &:nth-of-type(4) {
+            transform: translateY(10px);
+        }
     }
 
     .bravery & {
+        height: 100%;
         max-height: 130px;
 
         &:nth-of-type(1),
@@ -231,16 +289,7 @@
         }
 
         + .venture__preview {
-            margin-top: -20%;
-        }
-
-        &::after {
-            background-color: red;
-            border-radius: 50%;
-            content: ' ';
-            display: block;
-            height: 100%;
-            width: 140px;
+            margin-top: -100px;
         }
     }
 

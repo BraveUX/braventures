@@ -6,6 +6,7 @@
         "order/order": ["custom-properties", "declarations"],
         "order/properties-alphabetical-order": true,
         "at-rule-no-unknown": null,
-        "declaration-empty-line-before": "never"
+        "declaration-empty-line-before": "never",
+        "no-descending-specificity": null
     }
 }

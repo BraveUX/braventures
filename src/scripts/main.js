@@ -76,10 +76,8 @@
                 },
                 0.15,
                 0.2
-            );
-
-        if (!elem.classList.contains('ftb')) {
-            tl.staggerFrom(
+            )
+            .staggerFrom(
                 elem.querySelectorAll('.venture__preview'),
                 1.25,
                 {
@@ -90,25 +88,9 @@
                         elem.classList.remove('animating');
                     }
                 },
-                0.15,
+                elem.classList.contains('ftb') ? 0.05 : 0.15,
                 0.3
             );
-        } else {
-            tl.staggerFrom(
-                elem.querySelectorAll('.venture__preview'),
-                0.5,
-                {
-                    rotationX: '90deg',
-                    transformOrigin: '100% 0',
-                    ease: Power2.easeOut,
-                    onComplete: function() {
-                        elem.classList.remove('animating');
-                    }
-                },
-                0.1,
-                0.3
-            );
-        }
 
         incrementalStagger += 0.2;
     });
@@ -123,79 +105,46 @@
         switch (true) {
             case elem.classList.contains('ffux'):
                 tl
-                    .fromTo(
+                    .to(
                         elem.querySelectorAll('.venture__preview')[1],
-                        0.5,
+                        0.4,
                         {
-                            boxShadow:
-                                '0 0 0.1px rgba(0,0,0,0.25), 0 0 0.1px rgba(0,0,0,0.22)'
-                        },
-                        {
-                            scale: 1.1,
-                            zIndex: 1,
-                            boxShadow:
-                                '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-                            ease: Back.easeOut.config(2)
+                            boxShadow: '7px 7px 30px 0 rgba(0, 0, 0, 0.4)',
+                            scale: 1,
+                            ease: Back.easeInOut.config(1.5)
                         },
                         0
                     )
                     .to(
-                        elem.querySelectorAll('.venture__preview')[0],
+                        [
+                            elem.querySelectorAll('.venture__preview')[0],
+                            elem.querySelectorAll('.venture__preview')[2]
+                        ],
                         0.5,
                         {
-                            x: '50%',
-                            rotation: -25,
-                            scale: 0.9,
+                            x: '0%',
+                            rotation: 0,
+                            scale: 1,
                             ease: Back.easeOut.config(1.5)
                         },
-                        0.05
-                    )
-                    .to(
-                        elem.querySelectorAll('.venture__preview')[2],
-                        0.5,
-                        {
-                            x: '-50%',
-                            rotation: 25,
-                            scale: 0.9,
-                            ease: Back.easeOut.config(1.5)
-                        },
-                        0.05
+                        0.025
                     );
                 break;
 
             // HOVER Stock Against Photography
             case elem.classList.contains('sap'):
                 tl
-                    .set(elem.querySelectorAll('.venture__preview')[0], {
-                        css: {
-                            boxShadow:
-                                '0 0 0.1px rgba(0,0,0,0.25), 0 0 0.1px rgba(0,0,0,0.22)'
-                        }
-                    })
-                    .to(
-                        elem.querySelectorAll('.venture__preview')[0],
-                        0.3,
-                        {
-                            scale: 1.2,
-                            zIndex: 1,
-                            boxShadow:
-                                '0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)',
-                            ease: Back.easeOut.config(2)
-                        },
-                        0
-                    )
-                    .add('shift')
-                    .to(
+                    .from(
                         elem.querySelectorAll('.venture__preview')[0],
                         0.5,
                         {
-                            xPercent: 300,
-                            x: 35,
-                            ease: Back.easeOut.config(1.1)
+                            xPercent: '150%',
+                            x: 20,
+                            ease: Back.easeOut.config(1.5)
                         },
-                        'shift'
+                        0
                     )
-                    .staggerTo(
+                    .staggerFrom(
                         [
                             elem.querySelectorAll('.venture__preview')[1],
                             elem.querySelectorAll('.venture__preview')[2],
@@ -203,20 +152,32 @@
                         ],
                         0.5,
                         {
-                            xPercent: -100,
-                            x: -10,
-                            ease: Back.easeOut.config(1.5)
+                            skewY: '26%',
+                            x: -15,
+                            cycle: {
+                                xPercent: ['-100%', '-200%', '-300%']
+                            },
+                            ease: Back.easeOut.config(1.2)
                         },
-                        0.1,
-                        'shift'
+                        0.2,
+                        0.3
                     )
-                    .to(elem.querySelectorAll('.venture__preview')[0], 0.3, {
-                        scale: 1,
-                        boxShadow:
-                            '0 0 0.1px rgba(0,0,0,0.25), 0 0 0.1px rgba(0,0,0,0.22)',
-                        ease: Back.easeOut.config(2)
-                    });
+                    .staggerFrom(
+                        [
+                            elem.querySelectorAll('.venture__preview')[1],
+                            elem.querySelectorAll('.venture__preview')[2],
+                            elem.querySelectorAll('.venture__preview')[3]
+                        ],
+                        0.1,
+                        {
+                            opacity: 0
+                        },
+                        0.2,
+                        0.3
+                    );
                 break;
+
+            // HOVER Bravery
             case elem.classList.contains('bravery'):
                 tl
                     .to(
@@ -232,7 +193,8 @@
                         elem.querySelectorAll('.venture__preview')[2],
                         0.5,
                         {
-                            y: '-15%',
+                            yPercent: '-15%',
+                            y: '-3',
                             ease: Back.easeOut.config(1.2)
                         },
                         0
@@ -256,6 +218,35 @@
                         0.05,
                         0
                     );
+                break;
+
+            // HOVER For the Badge
+            case elem.classList.contains('ftb'):
+                tl
+                    .set(elem.querySelectorAll('.venture__preview'), {
+                        x: '0%'
+                    })
+                    .staggerTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        1,
+                        {
+                            x: '-400%',
+                            ease: Back.easeIn.config(1)
+                        },
+                        0.05
+                    )
+                    .staggerFromTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        1,
+                        { x: '400%' },
+                        {
+                            x: '0%',
+                            ease: Back.easeOut.config(1)
+                        },
+                        0.05,
+                        1
+                    );
+
                 break;
         }
 
