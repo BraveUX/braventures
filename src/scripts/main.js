@@ -76,8 +76,46 @@
                 },
                 0.15,
                 0.2
-            )
-            .staggerFrom(
+            );
+
+        if (elem.classList.contains('sap')) {
+            tl.from(
+                elem.querySelectorAll('.venture__preview')[0],
+                1.25,
+                {
+                    autoAlpha: 0,
+                    y: 30,
+                    ease: Elastic.easeOut.config(1.75, 0.9),
+                    onComplete: function() {
+                        elem.classList.remove('animating');
+                    }
+                },
+                0.3
+            );
+        } else if (elem.classList.contains('ftb')) {
+            tl
+                .staggerFromTo(
+                    elem.querySelectorAll('.venture__preview'),
+                    1.25,
+                    {
+                        autoAlpha: 0,
+                        y: 30
+                    },
+                    {
+                        autoAlpha: 1,
+                        y: 0,
+                        x: 0,
+                        ease: Elastic.easeOut.config(1.75, 0.9),
+                        onComplete: function() {
+                            elem.classList.remove('animating');
+                        }
+                    },
+                    0.05,
+                    0.3
+                )
+                .set(elem.querySelectorAll('.venture__preview'), { x: 0 });
+        } else {
+            tl.staggerFrom(
                 elem.querySelectorAll('.venture__preview'),
                 1.25,
                 {
@@ -91,18 +129,23 @@
                 elem.classList.contains('ftb') ? 0.05 : 0.15,
                 0.3
             );
+        }
 
         incrementalStagger += 0.2;
     });
 
-    // Hover states
+    let tl;
+
+    // TODO: get this crap working
+    // function hoverAnimation() {}
+
     loop(document.querySelectorAll('.venture'), elem => {
-        const tl = new TimelineMax({
+        tl = new TimelineMax({
             paused: true
         });
 
-        // HOVER Fight For UX
         switch (true) {
+            // HOVER Fight For UX
             case elem.classList.contains('ffux'):
                 tl
                     .to(
@@ -122,7 +165,7 @@
                         ],
                         0.5,
                         {
-                            x: '0%',
+                            xPercent: '0%',
                             rotation: 0,
                             scale: 1,
                             ease: Back.easeOut.config(1.5)
@@ -150,14 +193,9 @@
                             elem.querySelectorAll('.venture__preview')[2],
                             elem.querySelectorAll('.venture__preview')[3]
                         ],
-                        0.5,
+                        0.1,
                         {
-                            skewY: '26%',
-                            x: -15,
-                            cycle: {
-                                xPercent: ['-100%', '-200%', '-300%']
-                            },
-                            ease: Back.easeOut.config(1.2)
+                            autoAlpha: 0
                         },
                         0.2,
                         0.3
@@ -168,9 +206,15 @@
                             elem.querySelectorAll('.venture__preview')[2],
                             elem.querySelectorAll('.venture__preview')[3]
                         ],
-                        0.1,
+                        0.5,
                         {
-                            opacity: 0
+                            y: 0,
+                            skewY: '26%',
+                            x: -15,
+                            cycle: {
+                                xPercent: ['-100%', '-200%', '-300%']
+                            },
+                            ease: Back.easeOut.config(1.2)
                         },
                         0.2,
                         0.3
@@ -180,15 +224,10 @@
             // HOVER Bravery
             case elem.classList.contains('bravery'):
                 tl
-                    .to(
-                        elem.querySelectorAll('.venture__preview')[0],
-
-                        0.5,
-                        {
-                            y: '15%',
-                            ease: Back.easeOut.config(1.2)
-                        }
-                    )
+                    .to(elem.querySelectorAll('.venture__preview')[0], 0.5, {
+                        y: '15%',
+                        ease: Back.easeOut.config(1.2)
+                    })
                     .to(
                         elem.querySelectorAll('.venture__preview')[2],
                         0.5,
@@ -223,14 +262,16 @@
             // HOVER For the Badge
             case elem.classList.contains('ftb'):
                 tl
-                    .set(elem.querySelectorAll('.venture__preview'), {
-                        x: '0%'
-                    })
-                    .staggerTo(
+                    .staggerFromTo(
                         elem.querySelectorAll('.venture__preview'),
                         1,
                         {
-                            x: '-400%',
+                            autoAlpha: 1,
+                            xPercent: '0'
+                        },
+                        {
+                            autoAlpha: 0,
+                            xPercent: '-400',
                             ease: Back.easeIn.config(1)
                         },
                         0.05
@@ -238,9 +279,13 @@
                     .staggerFromTo(
                         elem.querySelectorAll('.venture__preview'),
                         1,
-                        { x: '400%' },
                         {
-                            x: '0%',
+                            autoAlpha: 0,
+                            xPercent: 400
+                        },
+                        {
+                            autoAlpha: 1,
+                            xPercent: 0,
                             ease: Back.easeOut.config(1)
                         },
                         0.05,
