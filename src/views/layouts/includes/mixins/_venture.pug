@@ -10,8 +10,13 @@ mixin venture(shorthand, link, logo, copy, previews)
                     p.venture__text
                         != paragraph
         .venture__box.venture__box--preview
-            each preview in previews
-                img.venture__preview(src= preview.file.indexOf('http') ? `/assets/images/${preview.file}` : preview.file alt=preview.description)
+            if (shorthand == 'compass')
+                .venture__previews
+                    each preview in previews
+                        img.venture__preview(src= preview.file.indexOf('http') ? `/assets/images/${preview.file}` : preview.file alt=preview.description)
+            else
+                each preview in previews
+                    img.venture__preview(src= preview.file.indexOf('http') ? `/assets/images/${preview.file}` : preview.file alt=preview.description)
             .venture__cta
                 button.venture__link.btn--text Visit Site
         .venture__box.venture__box--arrow

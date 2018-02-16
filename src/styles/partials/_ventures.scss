@@ -21,11 +21,14 @@
     opacity: 0;
     position: relative;
     text-decoration: none;
-    transition: box-shadow 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: box-shadow 350ms cubic-bezier(0.25, 0.8, 0.25, 1),
+        background-color 350ms;
+    visibility: hidden;
+    width: 100%;
 
     &:hover {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-            0 10px 10px rgba(0, 0, 0, 0.17);
+        background-color: #222224;
+        box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.5);
     }
 
     + .venture {
@@ -57,7 +60,7 @@
 
 .venture__box {
     align-items: center;
-    display: flex;
+    display: inline-flex;
     padding: $gridGap*2;
     width: 100%;
 
@@ -101,12 +104,14 @@
     flex-flow: row wrap;
     justify-content: space-between;
     padding: $gridGap*2;
+    position: relative;
     transition: border 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
     .ftb & {
         align-items: center;
         flex-flow: row wrap;
         justify-content: center;
+        overflow: hidden;
     }
 
     @include media-query('md') {
@@ -120,14 +125,20 @@
 }
 
 .venture__cta {
-    background-color: transparent;
+    background-color: map-deep-get($colors, black, primary);
     border-top: 3px solid map-deep-get($colors, black, lighten-2);
     display: block;
     flex-shrink: 0;
     margin: $gridGap*2 #{-$gridGap*2} #{-$gridGap*2};
     padding: $gridGap*2 $gridGap*2;
     text-align: center;
+    transition: background-color 350ms;
     width: calc(100% + #{$gridGap*4});
+    z-index: 10;
+
+    .venture:hover & {
+        background-color: #222224;
+    }
 
     &:hover {
         .btn--text {
@@ -176,6 +187,11 @@
     @include text('trade-gothic', 12, 700, map-deep-get($colors, white, darken-1));
     margin: 0 0 $gridGap/2;
     text-transform: uppercase;
+    transition: color 350ms;
+
+    .venture:hover & {
+        color: #fff;
+    }
 
     @include media-query('lg') {
         margin: 0 0 $gridGap;
@@ -186,6 +202,11 @@
     @include text('source-sans-pro', 36, 300, map-deep-get($colors, white, darken-1));
     line-height: 1.2;
     margin: 0 0 $gridGap*0.75;
+    transition: color 350ms;
+
+    .venture:hover & {
+        color: #fff;
+    }
 
     @include media-query('lg') {
         margin: 0 0 $gridGap*1.5;
@@ -195,6 +216,20 @@
 .venture__text {
     @include text('sentinel', 16, 300, map-deep-get($colors, white, darken-2));
     margin: auto 0 0;
+    transition: color 350ms;
+
+    .venture:hover & {
+        color: #fff;
+    }
+}
+
+.venture__previews {
+    align-self: center;
+    display: inline-table;
+    height: 0;
+    padding-bottom: 43.5%;
+    position: relative;
+    width: 100%;
 }
 
 .venture__preview {
@@ -204,10 +239,78 @@
 
     .ffux & {
         @include calcSpacing(3);
+
+        &:nth-of-type(1) {
+            transform: translateX(50%) rotate(-25deg) scale(0.9);
+        }
+
+        &:nth-of-type(2) {
+            box-shadow: 0 7px 20px 0 rgba(0, 0, 0, 0.8);
+            transform: scale(1.125);
+            z-index: 1;
+        }
+
+        &:nth-of-type(3) {
+            transform: translateX(-50%) rotate(25deg) scale(0.9);
+        }
     }
 
     .sap & {
         @include calcSpacing(4);
+        // transform-origin: bottom center;
+        transform-style: preserve-3d;
+
+        &:nth-of-type(1) {
+            z-index: 10;
+        }
+
+        &:nth-of-type(2),
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+            box-shadow: 7px 7px 30px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        &:nth-of-type(2) {
+            transform: translateY(-5px);
+        }
+
+        &:nth-of-type(3) {
+            transform: translateY(30px);
+        }
+
+        &:nth-of-type(4) {
+            transform: translateY(10px);
+        }
+    }
+
+    .bravery & {
+        height: 100%;
+        max-height: 130px;
+        transform-style: preserve-3d;
+
+        &:nth-of-type(1),
+        &:nth-of-type(2) {
+            max-height: 137px;
+        }
+
+        &:nth-of-type(1) {
+            transform: translateZ(100px);
+            z-index: 2;
+        }
+
+        &:nth-of-type(2) {
+            transform: translateZ(50px);
+            z-index: 1;
+        }
+
+        &:nth-of-type(3) {
+            transform: translateZ(0);
+            z-index: 0;
+        }
+
+        + .venture__preview {
+            margin-top: -100px;
+        }
     }
 
     .ftb & {
@@ -224,6 +327,48 @@
             &:nth-last-child(-n + 6) {
                 display: block;
             }
+        }
+    }
+
+    .compass & {
+        height: calc(50% - 2%);
+        max-height: none;
+        position: absolute;
+        width: auto;
+        // Directory
+        &:nth-of-type(1) {
+            height: 100%;
+            left: 0;
+        }
+        // Date
+        &:nth-of-type(2) {
+            left: 20.6%;
+            top: 0;
+        }
+        // Weather
+        &:nth-of-type(3) {
+            bottom: 0;
+            left: 20.6%;
+        }
+        // Clock
+        &:nth-of-type(4) {
+            left: 40.6%;
+            top: 0;
+        }
+        // Uber
+        &:nth-of-type(5) {
+            left: 61.1%;
+            top: 0;
+        }
+        // Bikeshare
+        &:nth-of-type(6) {
+            bottom: 0;
+            left: 61.1%;
+        }
+        // Metro
+        &:nth-of-type(7) {
+            height: 100%;
+            right: 0;
         }
     }
 }
