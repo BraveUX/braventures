@@ -124,14 +124,20 @@
 }
 
 .venture__cta {
-    background-color: transparent;
+    background-color: map-deep-get($colors, black, primary);
     border-top: 3px solid map-deep-get($colors, black, lighten-2);
     display: block;
     flex-shrink: 0;
     margin: $gridGap*2 #{-$gridGap*2} #{-$gridGap*2};
     padding: $gridGap*2 $gridGap*2;
     text-align: center;
+    transition: background-color 350ms;
     width: calc(100% + #{$gridGap*4});
+    z-index: 10;
+
+    .venture:hover & {
+        background-color: #222224;
+    }
 
     &:hover {
         .btn--text {
