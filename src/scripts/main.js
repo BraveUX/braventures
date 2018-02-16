@@ -1,33 +1,6 @@
-// (function animateVenturesScroll() {
-//     const controller = new ScrollMagic.Controller();
-
-//     loop(document.querySelectorAll('.venture'), elem => {
-//         const tl = new TimelineMax({ repeat: -1 });
-//         const bounce = new TimelineMax();
-//         const preview = elem.querySelector('.venture__box--preview').children;
-
-//         tl.staggerFromTo(
-//             elem,
-//             0.6,
-//             {
-//                 autoAlpha: 0
-//             },
-//             { autoAlpha: 1 },
-//             2
-//         );
-
-//         new ScrollMagic.Scene({
-//             triggerElement: elem,
-//             triggerHook: 0.75,
-//             reverse: true
-//         })
-//             .setTween(tl)
-//             .addIndicators({ name: 'Box Tween' })
-//             .addTo(controller);
-//     });
-// })();
-
+// Handles venture cards animating in
 (function animateVentures() {
+    // Set starting delay -> will increment later
     let incrementalStagger = 0.5;
 
     loop(document.querySelectorAll('.venture'), elem => {
@@ -49,7 +22,6 @@
                 1.5,
                 {
                     y: '50',
-                    // x: 150,
                     transformOrigin: 'center left',
                     rotation: '2deg',
                     ease: Elastic.easeOut.config(0.5, 0.3)
@@ -78,6 +50,7 @@
                 0.2
             );
 
+        // SAP is a wrapped row of tags, so it works differently than the other sections
         if (elem.classList.contains('sap')) {
             tl.from(
                 elem.querySelectorAll('.venture__preview')[0],
@@ -113,204 +86,211 @@
     });
 })();
 
-loop(document.querySelectorAll('.venture'), elem => {
-    const tl = new TimelineMax({
-        paused: true
-    });
+// Handles venture hover animations
+(function hoverVentures() {
+    // Loop through each venture
+    loop(document.querySelectorAll('.venture'), elem => {
+        const tl = new TimelineMax({
+            paused: true
+        });
 
-    switch (true) {
-        // HOVER Fight For UX
-        case elem.classList.contains('ffux'):
-            tl
-                .to(
-                    elem.querySelectorAll('.venture__preview')[1],
-                    0.4,
-                    {
-                        boxShadow: '7px 7px 30px 0 rgba(0, 0, 0, 0.4)',
-                        scale: 1,
-                        ease: Back.easeInOut.config(1.5)
-                    },
-                    0
-                )
-                .to(
-                    [
-                        elem.querySelectorAll('.venture__preview')[0],
-                        elem.querySelectorAll('.venture__preview')[2]
-                    ],
-                    0.5,
-                    {
-                        x: '0',
-                        rotation: 0,
-                        scale: 1,
-                        ease: Back.easeOut.config(1.5)
-                    },
-                    0.025
-                );
-            break;
-
-        // HOVER Stock Against Photography
-        case elem.classList.contains('sap'):
-            tl
-                .from(
-                    elem.querySelectorAll('.venture__preview')[0],
-                    0.5,
-                    {
-                        xPercent: '150%',
-                        x: 20,
-                        ease: Back.easeOut.config(1.5)
-                    },
-                    0
-                )
-                .staggerFrom(
-                    [
+        // Run animation based on parent class name (varies between each venture)
+        switch (true) {
+            // HOVER Fight For UX
+            case elem.classList.contains('ffux'):
+                tl
+                    .to(
                         elem.querySelectorAll('.venture__preview')[1],
-                        elem.querySelectorAll('.venture__preview')[2],
-                        elem.querySelectorAll('.venture__preview')[3]
-                    ],
-                    0.1,
-                    {
-                        autoAlpha: 0
-                    },
-                    0.2,
-                    0.3
-                )
-                .staggerFrom(
-                    [
-                        elem.querySelectorAll('.venture__preview')[1],
-                        elem.querySelectorAll('.venture__preview')[2],
-                        elem.querySelectorAll('.venture__preview')[3]
-                    ],
-                    0.5,
-                    {
-                        y: 0,
-                        skewY: '26%',
-                        x: -15,
-                        cycle: {
-                            xPercent: ['-100%', '-200%', '-300%']
+                        0.4,
+                        {
+                            boxShadow: '7px 7px 30px 0 rgba(0, 0, 0, 0.4)',
+                            scale: 1,
+                            ease: Back.easeInOut.config(1.5)
                         },
-                        ease: Back.easeOut.config(1.2)
+                        0
+                    )
+                    .to(
+                        [
+                            elem.querySelectorAll('.venture__preview')[0],
+                            elem.querySelectorAll('.venture__preview')[2]
+                        ],
+                        0.5,
+                        {
+                            x: '0',
+                            rotation: 0,
+                            scale: 1,
+                            ease: Back.easeOut.config(1.5)
+                        },
+                        0.025
+                    );
+                break;
+
+            // HOVER Stock Against Photography
+            case elem.classList.contains('sap'):
+                tl
+                    .from(
+                        elem.querySelectorAll('.venture__preview')[0],
+                        0.5,
+                        {
+                            xPercent: '150%',
+                            x: 20,
+                            ease: Back.easeOut.config(1.5)
+                        },
+                        0
+                    )
+                    .staggerFrom(
+                        [
+                            elem.querySelectorAll('.venture__preview')[1],
+                            elem.querySelectorAll('.venture__preview')[2],
+                            elem.querySelectorAll('.venture__preview')[3]
+                        ],
+                        0.1,
+                        {
+                            autoAlpha: 0
+                        },
+                        0.2,
+                        0.3
+                    )
+                    .staggerFrom(
+                        [
+                            elem.querySelectorAll('.venture__preview')[1],
+                            elem.querySelectorAll('.venture__preview')[2],
+                            elem.querySelectorAll('.venture__preview')[3]
+                        ],
+                        0.5,
+                        {
+                            y: 0,
+                            skewY: '26%',
+                            x: -15,
+                            cycle: {
+                                xPercent: ['-100%', '-200%', '-300%']
+                            },
+                            ease: Back.easeOut.config(1.2)
+                        },
+                        0.2,
+                        0.3
+                    );
+                break;
+
+            // HOVER Bravery
+            case elem.classList.contains('bravery'):
+                tl
+                    .to(elem.querySelectorAll('.venture__preview')[0], 0.5, {
+                        y: '15%',
+                        ease: Back.easeOut.config(1.2),
+                        zIndex: 10
+                    })
+                    .to(
+                        elem.querySelectorAll('.venture__preview')[2],
+                        0.5,
+                        {
+                            yPercent: '-15%',
+                            y: '-3',
+                            ease: Back.easeOut.config(1.2)
+                        },
+                        0
+                    )
+                    .staggerTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        0.5,
+                        {
+                            rotationY: 45,
+                            ease: Back.easeOut.config(1.5)
+                        },
+                        0.05,
+                        0
+                    )
+                    .staggerTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        0.5,
+                        {
+                            scale: 1.4
+                        },
+                        0.05,
+                        0
+                    );
+                break;
+
+            // HOVER Compass
+            case elem.classList.contains('compass'):
+                tl.staggerTo(
+                    elem.querySelectorAll('.venture__preview'),
+                    1,
+                    {
+                        // y: '108%',
+                        // x: '-108.5%',
+                        rotationY: '360',
+                        ease: Back.easeOut.config(1.4)
                     },
-                    0.2,
-                    0.3
+                    0.05
                 );
-            break;
 
-        // HOVER Bravery
-        case elem.classList.contains('bravery'):
-            tl
-                .to(elem.querySelectorAll('.venture__preview')[0], 0.5, {
-                    y: '15%',
-                    ease: Back.easeOut.config(1.2),
-                    zIndex: 10
-                })
-                .to(
-                    elem.querySelectorAll('.venture__preview')[2],
-                    0.5,
-                    {
-                        yPercent: '-15%',
-                        y: '-3',
-                        ease: Back.easeOut.config(1.2)
-                    },
-                    0
-                )
-                .staggerTo(
-                    elem.querySelectorAll('.venture__preview'),
-                    0.5,
-                    {
-                        rotationY: 45,
-                        ease: Back.easeOut.config(1.5)
-                    },
-                    0.05,
-                    0
-                )
-                .staggerTo(
-                    elem.querySelectorAll('.venture__preview'),
-                    0.5,
-                    {
-                        scale: 1.4
-                    },
-                    0.05,
-                    0
-                );
-            break;
+                break;
 
-        // HOVER Compass
-        case elem.classList.contains('compass'):
-            tl.staggerTo(
-                elem.querySelectorAll('.venture__preview'),
-                1,
-                {
-                    // y: '108%',
-                    // x: '-108.5%',
-                    rotationY: '360',
-                    ease: Back.easeOut.config(1.4)
-                },
-                0.05
-            );
+            // HOVER For the Badge
+            case elem.classList.contains('ftb'):
+                tl
+                    .staggerFromTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        0.75,
+                        {
+                            autoAlpha: 1,
+                            y: '0'
+                        },
+                        {
+                            autoAlpha: 0,
+                            y: '-400',
+                            ease: Back.easeIn.config(1)
+                        },
+                        0.025
+                    )
+                    .staggerFromTo(
+                        elem.querySelectorAll('.venture__preview'),
+                        0.75,
+                        {
+                            autoAlpha: 0,
+                            y: 400
+                        },
+                        {
+                            autoAlpha: 1,
+                            y: 0,
+                            ease: Back.easeOut.config(1)
+                        },
+                        0.025,
+                        0.75
+                    );
 
-            break;
-
-        // HOVER For the Badge
-        case elem.classList.contains('ftb'):
-            tl
-                .staggerFromTo(
-                    elem.querySelectorAll('.venture__preview'),
-                    0.75,
-                    {
-                        autoAlpha: 1,
-                        y: '0'
-                    },
-                    {
-                        autoAlpha: 0,
-                        y: '-400',
-                        ease: Back.easeIn.config(1)
-                    },
-                    0.025
-                )
-                .staggerFromTo(
-                    elem.querySelectorAll('.venture__preview'),
-                    0.75,
-                    {
-                        autoAlpha: 0,
-                        y: 400
-                    },
-                    {
-                        autoAlpha: 1,
-                        y: 0,
-                        ease: Back.easeOut.config(1)
-                    },
-                    0.025,
-                    0.75
-                );
-
-            break;
-    }
-
-    // Mouse In
-    elem.addEventListener('mouseenter', () => {
-        console.log('enter');
-        if (
-            (elem.classList.contains('ftb') && !tl.isActive()) ||
-            (elem.classList.contains('compass') && !tl.isActive())
-        ) {
-            tl.play(0);
-        } else {
-            tl.play();
+                break;
         }
-    });
 
-    // Mouse Out
-    elem.addEventListener('mouseleave', () => {
-        console.log('exit');
-        if (
-            elem.classList.contains('ffux') ||
-            elem.classList.contains('sap') ||
-            elem.classList.contains('bravery')
-        ) {
-            tl.reverse();
-        }
+        // Mouse In
+        elem.addEventListener('mouseenter', () => {
+            // If FTB -OR- Compass -AND- not currently running, play from 0
+            if (
+                (elem.classList.contains('ftb') && !tl.isActive()) ||
+                (elem.classList.contains('compass') && !tl.isActive())
+            ) {
+                // forces animation to play from start
+                tl.play(0);
+            } else {
+                // plays animation from where timeline ended last
+                tl.play();
+            }
+        });
+
+        // Mouse Out
+        elem.addEventListener('mouseleave', () => {
+            // If FFUX -OR- SAP -OR- Bravery, reverse timeline
+            if (
+                elem.classList.contains('ffux') ||
+                elem.classList.contains('sap') ||
+                elem.classList.contains('bravery')
+            ) {
+                tl.reverse();
+            }
+        });
     });
-});
+})();
 
 (function scrollTop() {
     let intervalId = 0; // Needed to cancel the scrolling when we're at the top of the page
@@ -337,6 +317,7 @@ loop(document.querySelectorAll('.venture'), elem => {
     });
 })();
 
+// Show header when scrolling down, reveal when scrolling up
 (function headerReveal() {
     const header = document.querySelector('.header');
     let lastScroll = 0;
