@@ -48,10 +48,10 @@
                 elem,
                 1.5,
                 {
-                    y: 20,
-                    x: 150,
+                    y: '50',
+                    // x: 150,
                     transformOrigin: 'center left',
-                    rotation: '10deg',
+                    rotation: '2deg',
                     ease: Elastic.easeOut.config(0.5, 0.3)
                 },
                 0
@@ -200,7 +200,8 @@ loop(document.querySelectorAll('.venture'), elem => {
             tl
                 .to(elem.querySelectorAll('.venture__preview')[0], 0.5, {
                     y: '15%',
-                    ease: Back.easeOut.config(1.2)
+                    ease: Back.easeOut.config(1.2),
+                    zIndex: 10
                 })
                 .to(
                     elem.querySelectorAll('.venture__preview')[2],
@@ -231,6 +232,22 @@ loop(document.querySelectorAll('.venture'), elem => {
                     0.05,
                     0
                 );
+            break;
+
+        // HOVER Compass
+        case elem.classList.contains('compass'):
+            tl.staggerTo(
+                elem.querySelectorAll('.venture__preview'),
+                1,
+                {
+                    // y: '108%',
+                    // x: '-108.5%',
+                    rotationY: '360',
+                    ease: Back.easeOut.config(1.4)
+                },
+                0.05
+            );
+
             break;
 
         // HOVER For the Badge
@@ -272,13 +289,26 @@ loop(document.querySelectorAll('.venture'), elem => {
     // Mouse In
     elem.addEventListener('mouseenter', () => {
         console.log('enter');
-        tl.play();
+        if (
+            (elem.classList.contains('ftb') && !tl.isActive()) ||
+            (elem.classList.contains('compass') && !tl.isActive())
+        ) {
+            tl.play(0);
+        } else {
+            tl.play();
+        }
     });
 
     // Mouse Out
     elem.addEventListener('mouseleave', () => {
         console.log('exit');
-        tl.reverse();
+        if (
+            elem.classList.contains('ffux') ||
+            elem.classList.contains('sap') ||
+            elem.classList.contains('bravery')
+        ) {
+            tl.reverse();
+        }
     });
 });
 
