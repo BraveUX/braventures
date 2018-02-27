@@ -40,7 +40,7 @@ gulp.task('browser-sync', () => {
                 extensions: ['html']
             }
         },
-        port: 8000,
+        port: 8080,
         open: false,
         notify: false,
         logConnections: true
