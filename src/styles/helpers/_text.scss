@@ -6,8 +6,10 @@
     font-family: 'Trade Gothic LT Std';
     src: url('../fonts/2CD600_0_0.eot');
     src: url('../fonts/2CD600_0_0.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/2CD600_0_0.woff2') format('woff2'), url('../fonts/2CD600_0_0.woff') format('woff'),
-        url('../fonts/2CD600_0_0.ttf') format('truetype'), url('../fonts/2CD600_0_0.svg#wf') format('svg');
+        url('../fonts/2CD600_0_0.woff2') format('woff2'),
+        url('../fonts/2CD600_0_0.woff') format('woff'),
+        url('../fonts/2CD600_0_0.ttf') format('truetype'),
+        url('../fonts/2CD600_0_0.svg#wf') format('svg');
 }
 
 // source sans pro
@@ -23,18 +25,16 @@
         letter-spacing: 2px;
     }
 
-    @else if ($family == 'source-sans-pro') {
+ @else if ($family == 'source-sans-pro') {
         font-family: 'Source Sans Pro', sans-serif;
     }
 
-    @else if ($family == 'sentinel') {
+ @else if ($family == 'sentinel') {
         font-family: 'Sentinel A', 'Sentinel B', serif;
     }
 
-    @else {
-        //TODO: This is to audit any broken text classes -- delete for prod
-        color: pink;
-        font-family: sans-serif;
+ @else {
+        font-family: 'Source Sans Pro', sans-serif;
     }
 }
 

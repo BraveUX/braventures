@@ -1,3 +1,9 @@
+/*
+* All of the project colors are captured within a color
+* map and follow a consistent naming convention so as to
+* make it easier to keep track of the different possible
+* color combinations:
+*/
 $colors: (
     black:
         (
@@ -16,3 +22,6 @@ $colors: (
             darken-5: #6f7f84
         )
 );
+
+// In order to call a color use 'map-deep-get'
+// Example: 'background-color: map-deep-get($colors, black, primary);'

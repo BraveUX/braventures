@@ -1,10 +1,13 @@
 //- General Mixins
+
+//- inline SVG (flattened and style elements removed)
 mixin inline-svg(svgName, className = null)
-    svg(class= className !== null ? className + ' ' + svgName : svgName)
+    svg(class= className != null ? `${className} ${svgName}` : svgName)
         use(xlink:href=`#${svgName}`)
 
+//- standard svg (preserve style elements)
 mixin svg(svgName, className = null)
-    object(type="image/svg+xml" data=`/assets/svg/${svgName}.svg` class= className !== null ? className + ' ' + svgName : svgName)
+    object(type="image/svg+xml" data=`/assets/svg/${svgName}.svg` class= className != null ? `${className} ${svgName}` : svgName)
 
 //- Mixin Blocks
 include mixins/_venture

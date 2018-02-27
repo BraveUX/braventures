@@ -18,12 +18,12 @@ mixin headContent(title, description)
     else
         link(rel='stylesheet' href='assets/stylesheets/main.css')
 
+    //- Show content if JS is disabled
     noscript
         style.
             .venture {
                 opacity: 1;
             }
-
 
     //- If extra head content is necessary per page
     block head

@@ -1,11 +1,12 @@
+// Set wrappercc
 @mixin wrapper {
     margin: 0 auto;
     max-width: $wrapper-width;
     position: relative;
     width: 100%;
-    z-index: 10;
 }
 
+// Set absolute position
 @mixin position($position: relative, $top: null, $right: null, $bottom: null, $left: null) {
     bottom: $bottom;
     left: $left;
