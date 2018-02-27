@@ -1,4 +1,4 @@
-// Handles venture cards animating in
+// Handles venture cards animating in via GSAP TimelineMax
 (function animateVentures() {
     // Set starting delay -> will increment later
     let incrementalStagger = 0.5;
@@ -86,7 +86,7 @@
     });
 })();
 
-// Handles venture hover animations
+// Handles venture hover animations via GSAP TimelineMax
 (function hoverVentures() {
     // Loop through each venture
     loop(document.querySelectorAll('.venture'), elem => {
