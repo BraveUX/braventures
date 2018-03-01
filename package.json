@@ -59,6 +59,7 @@
     "gulp-uncss": "*",
     "gulp-util": "^3.0.8",
     "node-sass": "^4.5.3",
+    "pug-lint": "^2.5.0",
     "require-dir": "*",
     "scrollmagic": "^2.0.5",
     "stylelint": "*",

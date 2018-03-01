@@ -28,8 +28,7 @@ module.exports = {
     requireLowerCaseTags: true,
     requireSpaceAfterCodeOperator: true,
     requireSpacesInsideAttributeBrackets: null,
-    requireSpecificAttributes: [
-        {
+    requireSpecificAttributes: [{
             html: 'lang'
         },
         {
@@ -47,15 +46,10 @@ module.exports = {
     ],
     requireStrictEqualityOperators: true,
     validateAttributeQuoteMarks: "'",
-    validateAttributeSeparator: [
-        {
-            separator: ', ',
-            multiLineSeparator: '\n '
-        }
-    ],
+    validateAttributeSeparator: null,
     validateDivTags: true,
     validateExtensions: null,
-    validateIndentation: 2,
+    validateIndentation: 4,
     validateLineBreaks: 'LF',
     validateSelfClosingTags: true,
     validateTemplateString: true

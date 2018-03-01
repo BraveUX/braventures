@@ -1,5 +1,5 @@
 mixin venture(shorthand, link, logo, copy, previews)
-    a.venture.animating(class= shorthand href= link target="_blank")
+    a.venture.animating(class=shorthand href=link target='_blank')
         .venture__box.venture__box--logo
             +svg(logo, 'venture__logo')
         .venture__box.venture__box--copy
@@ -10,7 +10,7 @@ mixin venture(shorthand, link, logo, copy, previews)
                     p.venture__text
                         != paragraph
         .venture__box.venture__box--preview
-            if (shorthand == 'compass')
+            if (shorthand === 'compass')
                 .venture__previews
                     each preview in previews
                         img.venture__preview(src= preview.file.indexOf('http') ? `/assets/images/${preview.file}` : preview.file alt=preview.description)
