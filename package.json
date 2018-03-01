@@ -1,9 +1,9 @@
 {
-  "name": "project-boilerplate",
+  "name": "braventures",
   "version": "1.0.0",
-  "description": "This is a boilerplate starting point for new PUG projects",
+  "description": "This is a landing page for various Brave UX side projects.",
   "main": "gulpfile.js",
-  "author": "Eric Fuhrmann",
+  "author": "Brave UX | Eric Fuhrmann",
   "license": "UNLICENSED",
   "scripts": {
     "test": "gulp test",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ekfuhrmann/project-boilerplate"
+    "url": "https://braventures.com/"
   },
   "babel": {
     "presets": [
