@@ -16,11 +16,6 @@
     "type": "git",
     "url": "https://braventures.com/"
   },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
   "keywords": [
     "js",
     "sass",
