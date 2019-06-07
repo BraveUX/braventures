@@ -1,28 +1,28 @@
 .content {
-    min-height: calc(100vh - #{$header-height});
+  min-height: calc(100vh - #{$header-height});
 }
 
 .content__wrapper {
-    @include wrapper;
-    padding: $gridGap*3 5vw $gridGap*4;
+  @include wrapper;
+  padding: $grid-gap * 3 5vw $grid-gap * 4;
 
-    @include media-query('md') {
-        padding: $gridGap*6 5vw $gridGap*8;
-    }
+  @include media-query('md') {
+    padding: $grid-gap * 6 5vw $grid-gap * 8;
+  }
 }
 
 .content__title {
-    @include text('sentinel', 32, 300, map-deep-get($colors, white, primary));
-    @include text('sentinel', 32, 300, map-deep-get($colors, white, primary));
-    margin: 0 auto $gridGap*3;
-    max-width: 450px;
-    text-align: center;
+  @include text('sentinel', 32, 300, $white);
+  @include text('sentinel', 32, 300, $white);
+  margin: 0 auto $grid-gap * 3;
+  max-width: 450px;
+  text-align: center;
 
-    @include media-query('md') {
-        margin: 0 auto $gridGap*6;
-    }
+  @include media-query('md') {
+    margin: 0 auto $grid-gap * 6;
+  }
 
-    @include media-query('lg') {
-        max-width: none;
-    }
+  @include media-query('lg') {
+    max-width: none;
+  }
 }

@@ -1,38 +1,43 @@
 .btn--text {
-    @include text('trade-gothic', 14, 700, map-deep-get($colors, black, lighten-3));
-    align-items: center;
-    background-color: transparent;
-    border: none;
-    display: flex;
-    line-height: 1;
-    margin: 0;
-    outline: none;
-    padding: 0;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 350ms ease;
+  @include text('nudista', 14, 600, $dove-gray);
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  letter-spacing: 1.5px;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 350ms ease;
+
+  &::after {
+    @include background-svg(
+      '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 32"><title>arrow-right</title><path fill="#{$dove-gray}" d="M7.2 2.4l-4.8 4.602 9.802 9.802-9.802 9.795 4.8 4.602 12.8-14.397z"></path></svg>'
+    );
+    background-repeat: no-repeat;
+    content: ' ';
+    display: block;
+    height: 13px;
+    position: absolute;
+    right: calc(-10px + -#{$grid-gap/2});
+    top: 0;
+    transform: scaleY(0);
+    transition: all 350ms ease;
+    width: 10px;
+  }
+
+  &:hover {
+    color: $white;
 
     &::after {
-        @include background-svg('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 32"><title>arrow-right</title><path fill="#{map-deep-get($colors, black, lighten-3)}" d="M7.2 2.4l-4.8 4.602 9.802 9.802-9.802 9.795 4.8 4.602 12.8-14.397z"></path></svg>');
-        background-repeat: no-repeat;
-        content: ' ';
-        display: block;
-        height: 13px;
-        position: absolute;
-        right: calc(-10px + -#{$gridGap/2});
-        top: 0;
-        transform: scaleY(0);
-        transition: all 350ms ease;
-        width: 10px;
+      @include background-svg(
+        '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 32"><title>arrow-right</title><path fill="#{$white}" d="M7.2 2.4l-4.8 4.602 9.802 9.802-9.802 9.795 4.8 4.602 12.8-14.397z"></path></svg>'
+      );
+      transform: scaleY(1);
     }
-
-    &:hover {
-        color: map-deep-get($colors, white, primary);
-
-        &::after {
-            @include background-svg('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 32"><title>arrow-right</title><path fill="#{map-deep-get($colors, white, primary)}" d="M7.2 2.4l-4.8 4.602 9.802 9.802-9.802 9.795 4.8 4.602 12.8-14.397z"></path></svg>');
-            transform: scaleY(1);
-        }
-    }
+  }
 }

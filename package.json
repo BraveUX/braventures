@@ -24,6 +24,7 @@
     "gulp",
     "npm"
   ],
+  "browserslist": ["last 2 versions", "ie 11"],
   "devDependencies": {
     "animate-scss": "^3.2.1",
     "babel-core": "^6.26.0",

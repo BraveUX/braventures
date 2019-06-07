@@ -1,61 +1,61 @@
 .header {
-    @include position(fixed, 0);
-    background-color: map-deep-get($colors, black, primary);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-    transform: translateY(-110%);
-    transition: transform 300ms ease-in-out;
-    width: 100%;
-    z-index: 100;
+  @include position(fixed, 0);
+  background-color: $woodsmoke;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  transform: translateY(-110%);
+  transition: transform 300ms ease-in-out;
+  width: 100%;
+  z-index: 100;
 
-    &.is-visible {
-        transform: translateY(0);
-    }
+  &.is-visible {
+    transform: translateY(0);
+  }
 }
 
 .header__wrapper {
-    @include wrapper;
-    max-width: calc(#{$wrapper-width} + #{$gridGap*8});
+  @include wrapper;
+  max-width: calc(#{$wrapper-width} + #{$grid-gap * 8});
 }
 
 .header__box {
-    align-items: center;
-    display: flex;
-    height: $header-height;
-    justify-content: center;
-    padding: $gridGap*1.5 5vw;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  height: $header-height;
+  justify-content: center;
+  padding: $grid-gap * 1.5 5vw;
+  width: 100%;
 
-    @include media-query('sm') {
-        justify-content: space-between;
-    }
+  @include media-query('sm') {
+    justify-content: space-between;
+  }
 }
 
 .header__logo {
-    display: none;
+  display: none;
 
-    @include media-query('sm') {
-        display: block;
-        fill: map-deep-get($colors, white, darken-2);
-        height: 31px;
-        width: 37px;
-    }
+  @include media-query('sm') {
+    display: block;
+    fill: $iron;
+    height: 31px;
+    width: 37px;
+  }
 }
 
 .header__title {
-    fill: map-deep-get($colors, white, primary);
-    height: 21px;
-    width: 255px;
+  fill: $white;
+  height: 21px;
+  width: 255px;
 }
 
 .header__link {
-    display: none;
+  display: none;
 
-    @include media-query('sm') {
-        display: flex;
-        margin-left: $gridGap;
+  @include media-query('sm') {
+    display: flex;
+    margin-left: $grid-gap;
 
-        &::after {
-            content: ' ';
-        }
+    &::after {
+      content: none;
     }
+  }
 }

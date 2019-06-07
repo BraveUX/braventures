@@ -1,11 +1,16 @@
 footer.footer
     .footer__wrapper
-        .footer__box
-            p.footer__tagline Built By Brave
-            a(href='https://braveux.com' target='_blank').footer__flag
-                .footer__logo Brave UX
-                .footer__logo--hover
-            p.footer__legal &copy; Copyright&nbsp;
-                script document.write(new Date().getFullYear());
-                noscript 2018
-
+        .footer_inner
+            a.footer__logo(href='/')
+                +inline-svg({
+                  svgName: 'logo-wordmark'
+                })
+            .footer__legal
+                p.footer__text
+                    span.footer__copyright &copy;
+                        script.
+                          document.write(new Date().getFullYear());
+                        noscript 2018
+                    | &nbsp;Brave UX. All Rights Reserved.
+                .footer__stars &#9733;
+                p.footer__text Proudly made in our Nation&rsquo;s Capital.

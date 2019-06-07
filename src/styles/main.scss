@@ -1,10 +1,10 @@
 // Media Query Breakpoint Map (Modify as needed)
 $breakpoints: (
-    xs: 320px,
-    sm: 650px,
-    md: 768px,
-    lg: 1024px,
-    xl: 1440px
+  xs: 320px,
+  sm: 650px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1440px
 );
 
 // NORMALIZE
@@ -17,7 +17,6 @@ $breakpoints: (
 
 // HELPERS
 @import 'helpers/variables';
-@import 'helpers/colors';
 @import 'helpers/text';
 @import 'helpers/utilities';
 
@@ -30,43 +29,43 @@ $breakpoints: (
 
 // BOX-SIZING - FONT-SIZING PRESETS
 html {
-    box-sizing: border-box;
-    font-size: 62.5%; // Scales 1 rem unit to 10px
+  box-sizing: border-box;
+  font-size: 62.5%; // Scales 1 rem unit to 10px
 }
 
 *,
 *::before,
 *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
-    background-color: map-deep-get($colors, black, lighten-1);
-    font-size: 1.6rem; // = 16px default font size
-    margin: $header-height 0 0;
-    min-width: 320px;
-    overflow-x: hidden;
-    width: 100%;
+  background: linear-gradient(180deg, $shark 0, $woodsmoke);
+  font-size: 1.6rem; // = 16px default font size
+  margin: $header-height 0 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 // Text Highlight Color
 ::selection {
-    background: map-deep-get($colors, white, darken-4);
+  background: $gull-gray;
 }
 
 // Accessibility focus outline
 button,
 a {
-    &::-moz-focus-inner {
-        border: 0; // color: $green;
-    }
+  &::-moz-focus-inner {
+    border: 0; // color: $green;
+  }
 
-    &:focus {
-        outline: 1px dotted rgba(map-deep-get($colors, white, darken-3), 0.7); // outline-offset: 2px;
-    }
+  &:focus {
+    outline: 1px dotted rgba($silver, 0.7); // outline-offset: 2px;
+  }
 }
 
 // Hide inline spritesheet
 .svg__spritesheet {
-    display: none;
+  display: none;
 }

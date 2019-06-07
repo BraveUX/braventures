@@ -1,82 +1,118 @@
+$site-gutter: 12.5%;
+$spacing: $grid-gap * 5.75;
+
 .footer {
-    background-color: map-deep-get($colors, black, primary);
+  background-color: $shark;
+  overflow: hidden;
+  padding: $site-gutter 0;
+  position: relative;
+  transition: padding 500ms 500ms;
+  width: 100%;
+
+  @include media-query('md') {
+    padding: $site-gutter * 0.75 0;
+  }
+
+  @include media-query('xl') {
+    padding: $spacing * 2 0;
+  }
+
+  &::after {
+    @include position(absolute, 0, -75%, 0, -75%);
+    background-image: url('./../images/general/footer-egg.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: ' ';
+    height: 135px;
+    margin: auto auto 0;
+    opacity: 0;
+    transform: translateY(100%) scale(0.25);
+    transform-origin: bottom;
+    transition: opacity 500ms ease, transform 1.5s ease;
+    width: 419px;
+  }
+
+  &.footer--egg {
+    padding: $site-gutter 0 calc((#{$site-gutter}) + 135px);
+    transition: none;
+
+    @include media-query('md') {
+      padding: $site-gutter * 0.75 0 calc((#{$site-gutter * 0.75}) + 135px);
+    }
+
+    @include media-query('xl') {
+      padding: $spacing * 2 0 calc(#{$spacing} * 2 + 135px);
+    }
+
+    &::after {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition: opacity 750ms ease, transform 1.5s ease;
+    }
+  }
 }
 
 .footer__wrapper {
-    @include wrapper;
-    max-width: calc(#{$wrapper-width} + #{$gridGap*8});
-    padding: $gridGap*8 5vw;
-}
-
-.footer__box {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    @include media-query('sm') {
-        flex-direction: row;
-    }
-}
-
-.footer__tagline {
-    @include text('trade-gothic', 14, 700, map-deep-get($colors, black, lighten-3));
-    margin: 0;
-    text-transform: uppercase;
-}
-
-.footer__flag {
-    align-items: center;
-    display: flex;
-    height: 36px;
-    justify-content: center;
-    margin: $gridGap*3;
-    position: relative;
-    text-decoration: none;
-
-    @include media-query('sm') {
-        margin: 0;
-    }
+  @include wrapper;
+  max-width: calc(#{$wrapper-width} + #{$grid-gap * 8});
+  padding: 0 5vw;
 }
 
 .footer__logo {
-    @include hide-text;
-    background-image: url('../images/braveux-logo.svg');
-    background-repeat: no-repeat;
-    display: flex;
-    height: 36px;
-    opacity: 1;
-    position: relative;
-    transition: opacity 300ms 250ms;
-    width: 30px;
+  display: block;
+  fill: $white;
+  height: 17px;
+  margin: 0 auto;
+  text-decoration: none;
+  width: 97px;
 
-    .footer__flag:hover & {
-        opacity: 0;
-        transition: opacity 300ms;
-    }
-}
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 
-.footer__logo--hover {
-    align-self: center;
-    background-image: url('../images/braveux-logo--hover.svg');
-    background-repeat: no-repeat;
-    display: block;
-    height: 12px;
-    left: 50%;
-    opacity: 0;
-    position: absolute;
-    transform: translateX(-50%) translateY(100px);
-    transition: opacity 300ms, transform 1200ms;
-    width: 107px;
-
-    .footer__flag:hover & {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-        transition: opacity 300ms 250ms, transform 300ms 200ms;
-    }
+  @include media-query('md') {
+    margin: 0;
+  }
 }
 
 .footer__legal {
-    @include text('sentinel', 16, 300, map-deep-get($colors, black, lighten-3));
-    margin: 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+
+  @include media-query('md') {
+    flex-direction: row;
+  }
+}
+
+.footer__stars {
+  background-color: transparent;
+  border: 0;
+  color: $silver;
+  cursor: pointer;
+  display: block;
+  font-size: 12px;
+  margin: $grid-gap * 2 0;
+  opacity: 0.4;
+  padding: 0;
+  text-align: center;
+  text-shadow: -20px 0 0, 20px 0 0; // duplicates star
+  transition: opacity 500ms ease-out-cubic;
+  width: 60px;
+  // use `&#9733;` for star icon in html markup
+  z-index: 1;
+
+  @include media-query('md') {
+    margin: 0 $grid-gap;
+  }
+}
+
+.footer__text {
+  @include text('sentinel', 14, 400, rgba($silver, 0.4));
+  letter-spacing: 0.4px;
+  margin: 0;
 }

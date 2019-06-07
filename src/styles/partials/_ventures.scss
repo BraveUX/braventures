@@ -12,9 +12,9 @@
 }
 
 .venture {
-  background-color: map-deep-get($colors, black, primary);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.19);
-  color: map-deep-get($colors, white, darken-1);
+  background-color: $woodsmoke;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.12);
+  color: $gallery;
   display: flex;
   flex-flow: row wrap;
   min-height: 260px;
@@ -27,20 +27,20 @@
   width: 100%;
 
   &:hover {
-    background-color: #222224;
+    background-color: darken($shark, 2);
     box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.5);
   }
 
   + .venture {
-    margin-top: $gridGap * 4;
+    margin-top: $grid-gap * 4;
   }
 
   @include media-query('md', only) {
-    max-width: calc(50% - #{$gridGap});
+    max-width: calc(50% - #{$grid-gap});
 
     + .venture {
-      margin-left: $gridGap * 2;
-      margin-top: $gridGap * 2;
+      margin-left: $grid-gap * 2;
+      margin-top: $grid-gap * 2;
 
       &:nth-of-type(2) {
         margin-top: 0;
@@ -61,12 +61,17 @@
 .venture__box {
   align-items: center;
   display: inline-flex;
-  padding: $gridGap * 2;
+  padding: $grid-gap * 2;
+  transition: box-shadow 350ms;
   width: 100%;
 
   @include media-query('lg') {
     + .venture__box {
-      box-shadow: -3px 0 0 0 map-deep-get($colors, black, lighten-1);
+      box-shadow: -3px 0 0 0 $shark;
+    }
+
+    .venture:hover & + & {
+      box-shadow: -3px 0 0 0 lighten($shark, 3);
     }
   }
 }
@@ -79,31 +84,31 @@
 
   @include media-query('lg') {
     justify-content: center;
-    max-width: calc(100px + #{$gridGap * 4});
-    padding-right: $gridGap * 2;
+    max-width: calc(100px + #{$grid-gap * 4});
+    padding-right: $grid-gap * 2;
     position: relative;
     width: 100%;
   }
 }
 
 .venture__box--copy {
-  max-width: calc(100% - (48px + #{$gridGap * 2}));
+  max-width: calc(100% - (48px + #{$grid-gap * 2}));
 }
 
 .venture__box--copy,
 .venture__box--preview {
   @include media-query('lg') {
     // calc sides and split in half
-    max-width: calc(50% - ((100px + 25px) + #{$gridGap * 5}) / 2);
+    max-width: calc(50% - ((100px + 25px) + #{$grid-gap * 5}) / 2);
   }
 }
 
 .venture__box--preview {
-  border-top: 3px solid map-deep-get($colors, black, lighten-2);
+  border-top: 3px solid $tundora;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  padding: $gridGap * 2;
+  padding: $grid-gap * 2;
   position: relative;
   transition: border 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -125,22 +130,20 @@
 }
 
 .venture__cta {
-  background-color: map-deep-get($colors, black, primary);
-  border-top: 3px solid map-deep-get($colors, black, lighten-2);
+  background-color: $woodsmoke;
+  border-top: 3px solid $tundora;
   display: block;
   flex-shrink: 0;
-  margin: $gridGap * 2 #{-$gridGap * 2} #{-$gridGap * 2};
-  padding: $gridGap * 2 $gridGap * 2;
+  margin: $grid-gap * 2 #{-$grid-gap * 2} #{-$grid-gap * 2};
+  padding: $grid-gap * 2 $grid-gap * 2;
   text-align: center;
   transition: background-color 350ms;
-  width: calc(100% + #{$gridGap * 4});
+  width: calc(100% + #{$grid-gap * 4});
   z-index: 10;
 
   .venture:hover & {
     background-color: #222224;
-  }
 
-  &:hover {
     .btn--text {
       @extend .btn--text:hover;
     }
@@ -157,8 +160,8 @@
   @include media-query('lg') {
     display: flex;
     justify-content: center;
-    max-width: calc(25px + #{$gridGap});
-    padding: $gridGap * 2 $gridGap/2;
+    max-width: calc(25px + #{$grid-gap});
+    padding: $grid-gap * 2 $grid-gap/2;
   }
 }
 
@@ -184,13 +187,9 @@
 }
 
 .venture__type {
-  @include text(
-    'trade-gothic',
-    12,
-    700,
-    map-deep-get($colors, white, darken-1)
-  );
-  margin: 0 0 $gridGap/2;
+  @include text('nudista', 12, 600, $gallery);
+  letter-spacing: 1.5px;
+  margin: 0 0 $grid-gap/2;
   text-transform: uppercase;
   transition: color 350ms;
 
@@ -199,19 +198,14 @@
   }
 
   @include media-query('lg') {
-    margin: 0 0 $gridGap;
+    margin: 0 0 $grid-gap;
   }
 }
 
 .venture__title {
-  @include text(
-    'source-sans-pro',
-    36,
-    300,
-    map-deep-get($colors, white, darken-1)
-  );
+  @include text('nudista', 32, 600, $gallery);
   line-height: 1.2;
-  margin: 0 0 $gridGap * 0.75;
+  margin: 0 0 $grid-gap * 0.75;
   transition: color 350ms;
 
   .venture:hover & {
@@ -219,12 +213,12 @@
   }
 
   @include media-query('lg') {
-    margin: 0 0 $gridGap * 1.5;
+    margin: 0 0 $grid-gap * 1.5;
   }
 }
 
 .venture__text {
-  @include text('sentinel', 16, 300, map-deep-get($colors, white, darken-2));
+  @include text('sentinel', 16, 300, $iron);
   margin: auto 0 0;
   transition: color 350ms;
 
@@ -324,7 +318,7 @@
   }
 
   .ftb & {
-    margin: $gridGap/4;
+    margin: $grid-gap/4;
     max-height: 27px;
     width: auto;
 
@@ -384,7 +378,7 @@
 }
 
 .venture__arrow {
-  fill: map-deep-get($colors, white, primary);
+  fill: $white;
   height: 32px;
   width: 20px;
 }
