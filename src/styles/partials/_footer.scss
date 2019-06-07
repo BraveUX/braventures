@@ -63,7 +63,7 @@ $spacing: $grid-gap * 5.75;
   display: block;
   fill: $white;
   height: 17px;
-  margin: 0 auto;
+  margin: 0 auto $grid-gap * 3;
   text-decoration: none;
   width: 97px;
 
@@ -73,7 +73,7 @@ $spacing: $grid-gap * 5.75;
   }
 
   @include media-query('md') {
-    margin: 0;
+    margin: 0 0 $grid-gap * 4;
   }
 }
 
@@ -93,7 +93,6 @@ $spacing: $grid-gap * 5.75;
   background-color: transparent;
   border: 0;
   color: $silver;
-  cursor: pointer;
   display: block;
   font-size: 12px;
   margin: $grid-gap * 2 0;
