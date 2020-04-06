@@ -4,28 +4,28 @@ $breakpoints: (
   sm: 650px,
   md: 768px,
   lg: 1024px,
-  xl: 1440px
+  xl: 1440px,
 );
 
 // NORMALIZE
-@import 'normalize-scss/sass/normalize'; // loaded from node_modules
+@import "normalize-scss/sass/normalize"; // loaded from node_modules
 
 // VENDORS
-@import 'animate-scss/animate.scss'; // loaded from node_modules
-@import 'super-gigi/dist/main'; // loaded from node_modules
-@import 'vendors/link-underline';
+@import "animate-scss/animate.scss"; // loaded from node_modules
+@import "super-gigi/lib/main"; // loaded from node_modules
+@import "vendors/link-underline";
 
 // HELPERS
-@import 'helpers/variables';
-@import 'helpers/text';
-@import 'helpers/utilities';
+@import "helpers/variables";
+@import "helpers/text";
+@import "helpers/utilities";
 
 // PARTIALS
-@import 'partials/btn';
-@import 'partials/content';
-@import 'partials/footer';
-@import 'partials/header';
-@import 'partials/ventures';
+@import "partials/btn";
+@import "partials/content";
+@import "partials/footer";
+@import "partials/header";
+@import "partials/ventures";
 
 // BOX-SIZING - FONT-SIZING PRESETS
 html {
