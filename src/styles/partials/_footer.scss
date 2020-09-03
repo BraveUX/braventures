@@ -9,47 +9,12 @@ $spacing: $grid-gap * 5.75;
   transition: padding 500ms 500ms;
   width: 100%;
 
-  @include media-query('md') {
+  @include media-query("md") {
     padding: $site-gutter * 0.75 0;
   }
 
-  @include media-query('xl') {
+  @include media-query("xl") {
     padding: $spacing * 2 0;
-  }
-
-  &::after {
-    @include position(absolute, 0, -75%, 0, -75%);
-    background-image: url('./../images/general/footer-egg.svg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    content: ' ';
-    height: 135px;
-    margin: auto auto 0;
-    opacity: 0;
-    transform: translateY(100%) scale(0.25);
-    transform-origin: bottom;
-    transition: opacity 500ms ease, transform 1.5s ease;
-    width: 419px;
-  }
-
-  &.footer--egg {
-    padding: $site-gutter 0 calc((#{$site-gutter}) + 135px);
-    transition: none;
-
-    @include media-query('md') {
-      padding: $site-gutter * 0.75 0 calc((#{$site-gutter * 0.75}) + 135px);
-    }
-
-    @include media-query('xl') {
-      padding: $spacing * 2 0 calc(#{$spacing} * 2 + 135px);
-    }
-
-    &::after {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      transition: opacity 750ms ease, transform 1.5s ease;
-    }
   }
 }
 
@@ -72,7 +37,7 @@ $spacing: $grid-gap * 5.75;
     width: 100%;
   }
 
-  @include media-query('md') {
+  @include media-query("md") {
     margin: 0 0 $grid-gap * 4;
   }
 }
@@ -84,7 +49,7 @@ $spacing: $grid-gap * 5.75;
   justify-content: space-between;
   width: 100%;
 
-  @include media-query('md') {
+  @include media-query("md") {
     flex-direction: row;
   }
 }
@@ -105,13 +70,13 @@ $spacing: $grid-gap * 5.75;
   // use `&#9733;` for star icon in html markup
   z-index: 1;
 
-  @include media-query('md') {
+  @include media-query("md") {
     margin: 0 $grid-gap;
   }
 }
 
 .footer__text {
-  @include text('sentinel', 14, 400, rgba($silver, 0.4));
+  @include text("sentinel", 14, 400, rgba($silver, 0.4));
   letter-spacing: 0.4px;
   margin: 0;
 }
