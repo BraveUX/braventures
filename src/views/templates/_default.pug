@@ -19,8 +19,5 @@ html(lang='en-US')
         //- If extra scripts are needed replace here
 
         //- Scripts
-        if productionMode
-            script(src='assets/javascript/main.min.js')
-        else
-            script(src='assets/javascript/main.js')
+        script(src=`/${relativeRoot}assets/js/bundle.js`)
 

@@ -1,36 +1,83 @@
-'use strict'
-const gulp = require('gulp')
-const plugins = require('gulp-load-plugins')
-const $ = plugins()
-const config = require('../config')
-const when = require('gulp-if')
+const gulp = require('gulp');
+const when = require('gulp-if');
+const notify = require('gulp-notify');
+const changed = require('gulp-changed');
+const pug = require('gulp-pug');
+const data = require('gulp-data');
+const size = require('gulp-size');
+const { argv } = require('yargs');
 
-const argv = require('yargs').argv
 // Check if gulp scripts --prod or --production has been added to the task
-const production = argv.prod || argv.production
+const production = argv.prod || argv.production;
+const { deploy } = argv;
 
 const devLocals = {
-    base: '',
-    extension: '',
-    productionMode: false
-}
+  base: '/',
+  extension: '',
+  productionMode: false,
+  deployMode: deploy,
+};
 
 const prodLocals = {
-    base: config.productionBase,
-    extension: config.productionExtension,
-    productionMode: true
-}
+  base: '',
+  extension: '.html',
+  productionMode: true,
+  deployMode: deploy,
+};
 
-gulp.task('pug', () => {
-    return gulp.src('./src/views/**/!(_)*.pug')
-    .pipe(when(!production, $.pug({
-        pretty: true,
-        basedir: './src/views',
-        locals: devLocals
-    }))).on('error', $.notify.onError('Error: <%= error.message %>'))
-    .pipe(when(production, $.pug({
-        basedir: './src/views',
-        locals: prodLocals
-    }))).on('error', $.notify.onError('Error: <%= error.message %>'))
-    .pipe(gulp.dest(config.distFolder))
-})
+gulp.task('pug', () =>
+  gulp
+    .src('./src/views/**/!(_)*.pug')
+    .pipe(
+      // Get relative path to base directory
+      data((file) => {
+        const relativePath = file.history[0].replace(file.base, '');
+        const depth = (relativePath.match(/\//g) || []).length - 1;
+        const relativeRoot =
+          depth === 0 ? './' : new Array(depth + 1).join('./../');
+        return {
+          relativeRoot,
+        };
+      })
+    )
+    .pipe(
+      changed('dist', {
+        extension: '.html',
+      })
+    )
+    .pipe(
+      when(
+        !production,
+        pug({
+          pretty: true,
+          basedir: './src/views',
+          locals: devLocals,
+        })
+      )
+    )
+    .on(
+      'error',
+      notify.onError({
+        title: 'Gulp Task Error',
+        message: 'Error: <%= error.message %>',
+      })
+    )
+    .pipe(
+      when(
+        production,
+        pug({
+          basedir: './src/views',
+          locals: prodLocals,
+        })
+      )
+    )
+    .on(
+      'error',
+      notify.onError({
+        title: 'Gulp Task Error',
+        message: 'Error: <%= error.message %>',
+      })
+    )
+    .pipe(size({ showFiles: true }))
+    .pipe(gulp.dest('./dist'))
+);
