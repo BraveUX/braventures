@@ -10,14 +10,31 @@ const main = () => {
 
 document.addEventListener('DOMContentLoaded', main);
 
-// (function uxIntervention() {
-//   const svgContainer = document.querySelector('.');
+(function uxIntervention() {
+  const svgContainer = document.querySelector('.uxi .venture__preview');
 
-//   lottie.loadAnimation({
-//     container: svgContainer,
-//     renderer: 'svg',
-//     loop: true,
-//     autoplay: true,
-//     path: 'data.json',
-//   });
-// });
+  const animation = lottie.loadAnimation({
+    container: svgContainer,
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: '../assets/images/ux-intervention/data.json',
+  });
+
+  setTimeout(() => {
+    animation.goToAndStop(106);
+  }, 100);
+
+  let frames = [];
+
+  animation.onLoopComplete = (e) => {
+    console.log(e);
+    console.log('doot');
+    animation.playSegments([0, 106], true);
+  };
+
+  document.querySelector('.venture.uxi').addEventListener('click', (e) => {
+    e.preventDefault();
+    animation.play();
+  });
+})();

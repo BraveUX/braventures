@@ -112,6 +112,10 @@
   position: relative;
   transition: border 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
+  .uxi & {
+    padding-top: $grid-gap/2;
+  }
+
   .ftb & {
     align-items: center;
     flex-flow: row wrap;
@@ -240,6 +244,12 @@
   max-height: 190px;
   object-fit: contain;
   width: 100%;
+
+  .uxi & {
+    svg {
+      max-height: 200px;
+    }
+  }
 
   .ffux & {
     @include calcSpacing(3);

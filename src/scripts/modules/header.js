@@ -3,8 +3,6 @@ const header = () => {
   const header = document.querySelector('.header');
   let lastScroll = 0;
 
-  console.log('test');
-
   window.addEventListener('scroll', () => {
     const scrollTop = window.pageYOffset;
 
