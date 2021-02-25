@@ -28,7 +28,8 @@
 
   &:hover {
     background-color: darken($shark, 2);
-    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.9),
+      0 10px 15px 0 rgba(0, 0, 0, 0.5);
   }
 
   + .venture {
@@ -124,11 +125,13 @@
   }
 
   @include media-query('md') {
+    height: 390px;
     margin-top: auto;
   }
 
   @include media-query('lg') {
     border: none;
+    height: auto;
     margin: 0;
   }
 }
@@ -151,6 +154,10 @@
     .btn--text {
       @extend .btn--text:hover;
     }
+  }
+
+  @include media-query('md') {
+    margin-top: auto;
   }
 
   @include media-query('lg') {
