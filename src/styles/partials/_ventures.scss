@@ -279,7 +279,6 @@
 
   .sap & {
     @include calcSpacing(4);
-    // transform-origin: bottom center;
     transform-style: preserve-3d;
 
     &:nth-of-type(1) {
