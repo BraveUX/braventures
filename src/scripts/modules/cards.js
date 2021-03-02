@@ -73,6 +73,7 @@ function animateVentures() {
         {
           autoAlpha: 0,
           y: 30,
+          clearProps: 'y',
           ease: Elastic.easeOut.config(1.75, 0.9),
           onComplete: function () {
             elem.classList.remove('animating');
