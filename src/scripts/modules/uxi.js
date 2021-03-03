@@ -29,10 +29,10 @@ const uxi = () => {
 
   // wait for DOM to load
   animation.addEventListener('DOMLoaded', function () {
-    // play initial animation after 1s
+    // play initial animation after 0.5s
     setTimeout(() => {
       animation.playSegments([0, 90], true);
-    }, 1000);
+    }, 500);
 
     // on card hover
     uxIntervention.addEventListener('mouseenter', (e) => {
