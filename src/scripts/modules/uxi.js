@@ -31,7 +31,7 @@ const uxi = () => {
   animation.addEventListener('DOMLoaded', function () {
     // play initial animation after 1s
     setTimeout(() => {
-      animation.playSegments([0, 85], true);
+      animation.playSegments([0, 90], true);
     }, 1000);
 
     // on card hover
@@ -41,7 +41,7 @@ const uxi = () => {
         // set is animating to true
         isAnimating = true;
         // play frames 85-210 (signature)
-        animation.playSegments([85, 210], true);
+        animation.playSegments([90, 210], true);
         // animate perspective change
         tl.play();
       }
