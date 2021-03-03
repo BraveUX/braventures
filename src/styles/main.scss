@@ -8,29 +8,30 @@ $breakpoints: (
 );
 
 // NORMALIZE
-@import "normalize-scss/sass/normalize"; // loaded from node_modules
+@import 'normalize-scss/sass/normalize'; // loaded from node_modules
 
 // VENDORS
-@import "animate-scss/animate.scss"; // loaded from node_modules
-@import "super-gigi/lib/main"; // loaded from node_modules
-@import "vendors/link-underline";
+@import 'animate-scss/animate.scss'; // loaded from node_modules
+@import 'super-gigi/lib/main'; // loaded from node_modules
+@import 'vendors/link-underline';
 
 // HELPERS
-@import "helpers/variables";
-@import "helpers/text";
-@import "helpers/utilities";
+@import 'helpers/variables';
+@import 'helpers/text';
+@import 'helpers/utilities';
 
 // PARTIALS
-@import "partials/btn";
-@import "partials/content";
-@import "partials/footer";
-@import "partials/header";
-@import "partials/ventures";
+@import 'partials/btn';
+@import 'partials/content';
+@import 'partials/footer';
+@import 'partials/header';
+@import 'partials/ventures';
 
 // BOX-SIZING - FONT-SIZING PRESETS
 html {
   box-sizing: border-box;
   font-size: 62.5%; // Scales 1 rem unit to 10px
+  scroll-behavior: smooth;
 }
 
 *,
@@ -40,7 +41,7 @@ html {
 }
 
 body {
-  background: linear-gradient(180deg, $shark 0, $woodsmoke);
+  background: linear-gradient(180deg, $shark, $woodsmoke 90%) fixed;
   font-size: 1.6rem; // = 16px default font size
   margin: $header-height 0 0;
   min-width: 320px;

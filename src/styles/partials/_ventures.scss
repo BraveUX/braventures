@@ -28,7 +28,8 @@
 
   &:hover {
     background-color: darken($shark, 2);
-    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.9),
+      0 10px 15px 0 rgba(0, 0, 0, 0.5);
   }
 
   + .venture {
@@ -112,6 +113,10 @@
   position: relative;
   transition: border 350ms cubic-bezier(0.25, 0.8, 0.25, 1);
 
+  .uxi & {
+    padding-top: $grid-gap/2;
+  }
+
   .ftb & {
     align-items: center;
     flex-flow: row wrap;
@@ -120,11 +125,13 @@
   }
 
   @include media-query('md') {
+    height: 390px;
     margin-top: auto;
   }
 
   @include media-query('lg') {
     border: none;
+    height: auto;
     margin: 0;
   }
 }
@@ -147,6 +154,10 @@
     .btn--text {
       @extend .btn--text:hover;
     }
+  }
+
+  @include media-query('md') {
+    margin-top: auto;
   }
 
   @include media-query('lg') {
@@ -241,6 +252,13 @@
   object-fit: contain;
   width: 100%;
 
+  .uxi & {
+    svg {
+      filter: drop-shadow(0 7px 10px rgba(0, 0, 0, 0.9));
+      max-height: 200px;
+    }
+  }
+
   .ffux & {
     @include calcSpacing(3);
 
@@ -261,7 +279,6 @@
 
   .sap & {
     @include calcSpacing(4);
-    // transform-origin: bottom center;
     transform-style: preserve-3d;
 
     &:nth-of-type(1) {
